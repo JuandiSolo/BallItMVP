@@ -1,0 +1,2102 @@
+[
+  {
+    "frame": 0,
+    "timestamp_s": 0.0,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 161.9,
+      "right_elbow_angle": 38.2,
+      "left_knee_angle": 175.8,
+      "right_knee_angle": 164.6,
+      "left_hip_angle": 168.3,
+      "right_hip_angle": 177.5,
+      "left_shoulder_angle": 5.8,
+      "right_shoulder_angle": 30.9
+    }
+  },
+  {
+    "frame": 1,
+    "timestamp_s": 0.033,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 162.2,
+      "right_elbow_angle": 25.1,
+      "left_knee_angle": 176.2,
+      "right_knee_angle": 165.6,
+      "left_hip_angle": 167.5,
+      "right_hip_angle": 178.4,
+      "left_shoulder_angle": 5.7,
+      "right_shoulder_angle": 31.7
+    }
+  },
+  {
+    "frame": 2,
+    "timestamp_s": 0.067,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 163.0,
+      "right_elbow_angle": 8.7,
+      "left_knee_angle": 176.4,
+      "right_knee_angle": 166.2,
+      "left_hip_angle": 167.1,
+      "right_hip_angle": 179.0,
+      "left_shoulder_angle": 6.1,
+      "right_shoulder_angle": 33.0
+    }
+  },
+  {
+    "frame": 3,
+    "timestamp_s": 0.1,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 163.8,
+      "right_elbow_angle": 2.0,
+      "left_knee_angle": 176.6,
+      "right_knee_angle": 166.3,
+      "left_hip_angle": 166.9,
+      "right_hip_angle": 179.0,
+      "left_shoulder_angle": 6.5,
+      "right_shoulder_angle": 33.8
+    }
+  },
+  {
+    "frame": 4,
+    "timestamp_s": 0.133,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 164.3,
+      "right_elbow_angle": 10.3,
+      "left_knee_angle": 176.6,
+      "right_knee_angle": 166.6,
+      "left_hip_angle": 166.7,
+      "right_hip_angle": 179.5,
+      "left_shoulder_angle": 6.9,
+      "right_shoulder_angle": 35.0
+    }
+  },
+  {
+    "frame": 5,
+    "timestamp_s": 0.167,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 165.3,
+      "right_elbow_angle": 12.8,
+      "left_knee_angle": 176.8,
+      "right_knee_angle": 166.3,
+      "left_hip_angle": 166.7,
+      "right_hip_angle": 179.4,
+      "left_shoulder_angle": 7.2,
+      "right_shoulder_angle": 35.7
+    }
+  },
+  {
+    "frame": 6,
+    "timestamp_s": 0.2,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 165.5,
+      "right_elbow_angle": 13.8,
+      "left_knee_angle": 176.8,
+      "right_knee_angle": 166.1,
+      "left_hip_angle": 166.8,
+      "right_hip_angle": 179.3,
+      "left_shoulder_angle": 7.3,
+      "right_shoulder_angle": 36.1
+    }
+  },
+  {
+    "frame": 7,
+    "timestamp_s": 0.233,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 164.8,
+      "right_elbow_angle": 14.8,
+      "left_knee_angle": 176.8,
+      "right_knee_angle": 165.9,
+      "left_hip_angle": 166.8,
+      "right_hip_angle": 179.2,
+      "left_shoulder_angle": 7.6,
+      "right_shoulder_angle": 36.5
+    }
+  },
+  {
+    "frame": 8,
+    "timestamp_s": 0.267,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 164.6,
+      "right_elbow_angle": 14.5,
+      "left_knee_angle": 176.8,
+      "right_knee_angle": 165.9,
+      "left_hip_angle": 166.8,
+      "right_hip_angle": 178.9,
+      "left_shoulder_angle": 7.7,
+      "right_shoulder_angle": 36.4
+    }
+  },
+  {
+    "frame": 9,
+    "timestamp_s": 0.3,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 164.1,
+      "right_elbow_angle": 15.5,
+      "left_knee_angle": 176.9,
+      "right_knee_angle": 165.9,
+      "left_hip_angle": 166.5,
+      "right_hip_angle": 178.9,
+      "left_shoulder_angle": 8.0,
+      "right_shoulder_angle": 37.2
+    }
+  },
+  {
+    "frame": 10,
+    "timestamp_s": 0.333,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 163.9,
+      "right_elbow_angle": 16.0,
+      "left_knee_angle": 176.5,
+      "right_knee_angle": 165.8,
+      "left_hip_angle": 166.5,
+      "right_hip_angle": 178.7,
+      "left_shoulder_angle": 8.1,
+      "right_shoulder_angle": 37.7
+    }
+  },
+  {
+    "frame": 11,
+    "timestamp_s": 0.367,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 163.5,
+      "right_elbow_angle": 15.5,
+      "left_knee_angle": 176.3,
+      "right_knee_angle": 165.7,
+      "left_hip_angle": 166.8,
+      "right_hip_angle": 178.3,
+      "left_shoulder_angle": 8.4,
+      "right_shoulder_angle": 37.5
+    }
+  },
+  {
+    "frame": 12,
+    "timestamp_s": 0.4,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 163.1,
+      "right_elbow_angle": 14.7,
+      "left_knee_angle": 176.2,
+      "right_knee_angle": 165.8,
+      "left_hip_angle": 167.0,
+      "right_hip_angle": 178.2,
+      "left_shoulder_angle": 8.5,
+      "right_shoulder_angle": 37.5
+    }
+  },
+  {
+    "frame": 13,
+    "timestamp_s": 0.433,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 162.3,
+      "right_elbow_angle": 14.1,
+      "left_knee_angle": 176.2,
+      "right_knee_angle": 166.2,
+      "left_hip_angle": 167.2,
+      "right_hip_angle": 177.8,
+      "left_shoulder_angle": 8.7,
+      "right_shoulder_angle": 37.2
+    }
+  },
+  {
+    "frame": 14,
+    "timestamp_s": 0.467,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 161.3,
+      "right_elbow_angle": 14.3,
+      "left_knee_angle": 176.1,
+      "right_knee_angle": 167.2,
+      "left_hip_angle": 167.8,
+      "right_hip_angle": 178.2,
+      "left_shoulder_angle": 9.1,
+      "right_shoulder_angle": 36.7
+    }
+  },
+  {
+    "frame": 15,
+    "timestamp_s": 0.5,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 161.3,
+      "right_elbow_angle": 15.4,
+      "left_knee_angle": 175.0,
+      "right_knee_angle": 167.5,
+      "left_hip_angle": 168.4,
+      "right_hip_angle": 178.9,
+      "left_shoulder_angle": 8.9,
+      "right_shoulder_angle": 36.8
+    }
+  },
+  {
+    "frame": 16,
+    "timestamp_s": 0.533,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 160.5,
+      "right_elbow_angle": 16.8,
+      "left_knee_angle": 174.3,
+      "right_knee_angle": 167.9,
+      "left_hip_angle": 168.9,
+      "right_hip_angle": 179.3,
+      "left_shoulder_angle": 9.1,
+      "right_shoulder_angle": 36.3
+    }
+  },
+  {
+    "frame": 17,
+    "timestamp_s": 0.567,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 160.5,
+      "right_elbow_angle": 17.3,
+      "left_knee_angle": 173.9,
+      "right_knee_angle": 167.6,
+      "left_hip_angle": 169.2,
+      "right_hip_angle": 179.5,
+      "left_shoulder_angle": 9.1,
+      "right_shoulder_angle": 35.8
+    }
+  },
+  {
+    "frame": 18,
+    "timestamp_s": 0.6,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 160.4,
+      "right_elbow_angle": 17.7,
+      "left_knee_angle": 173.8,
+      "right_knee_angle": 167.4,
+      "left_hip_angle": 169.3,
+      "right_hip_angle": 179.4,
+      "left_shoulder_angle": 9.2,
+      "right_shoulder_angle": 34.8
+    }
+  },
+  {
+    "frame": 19,
+    "timestamp_s": 0.633,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 160.2,
+      "right_elbow_angle": 18.7,
+      "left_knee_angle": 173.5,
+      "right_knee_angle": 167.6,
+      "left_hip_angle": 169.5,
+      "right_hip_angle": 179.4,
+      "left_shoulder_angle": 9.2,
+      "right_shoulder_angle": 34.1
+    }
+  },
+  {
+    "frame": 20,
+    "timestamp_s": 0.667,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 160.2,
+      "right_elbow_angle": 19.5,
+      "left_knee_angle": 173.4,
+      "right_knee_angle": 167.6,
+      "left_hip_angle": 169.7,
+      "right_hip_angle": 179.6,
+      "left_shoulder_angle": 9.1,
+      "right_shoulder_angle": 33.0
+    }
+  },
+  {
+    "frame": 21,
+    "timestamp_s": 0.7,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 159.9,
+      "right_elbow_angle": 22.0,
+      "left_knee_angle": 173.2,
+      "right_knee_angle": 167.5,
+      "left_hip_angle": 169.8,
+      "right_hip_angle": 179.7,
+      "left_shoulder_angle": 8.8,
+      "right_shoulder_angle": 31.6
+    }
+  },
+  {
+    "frame": 22,
+    "timestamp_s": 0.733,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 159.2,
+      "right_elbow_angle": 25.9,
+      "left_knee_angle": 173.1,
+      "right_knee_angle": 167.7,
+      "left_hip_angle": 169.7,
+      "right_hip_angle": 179.9,
+      "left_shoulder_angle": 8.3,
+      "right_shoulder_angle": 29.4
+    }
+  },
+  {
+    "frame": 23,
+    "timestamp_s": 0.767,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 157.6,
+      "right_elbow_angle": 31.8,
+      "left_knee_angle": 173.0,
+      "right_knee_angle": 168.3,
+      "left_hip_angle": 169.6,
+      "right_hip_angle": 178.9,
+      "left_shoulder_angle": 8.3,
+      "right_shoulder_angle": 28.1
+    }
+  },
+  {
+    "frame": 24,
+    "timestamp_s": 0.8,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 156.6,
+      "right_elbow_angle": 40.1,
+      "left_knee_angle": 172.9,
+      "right_knee_angle": 169.4,
+      "left_hip_angle": 169.4,
+      "right_hip_angle": 177.8,
+      "left_shoulder_angle": 8.4,
+      "right_shoulder_angle": 25.0
+    }
+  },
+  {
+    "frame": 25,
+    "timestamp_s": 0.833,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 154.9,
+      "right_elbow_angle": 46.3,
+      "left_knee_angle": 174.5,
+      "right_knee_angle": 170.1,
+      "left_hip_angle": 168.4,
+      "right_hip_angle": 177.4,
+      "left_shoulder_angle": 8.5,
+      "right_shoulder_angle": 23.6
+    }
+  },
+  {
+    "frame": 26,
+    "timestamp_s": 0.867,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 152.5,
+      "right_elbow_angle": 54.9,
+      "left_knee_angle": 175.0,
+      "right_knee_angle": 170.7,
+      "left_hip_angle": 168.0,
+      "right_hip_angle": 176.8,
+      "left_shoulder_angle": 8.7,
+      "right_shoulder_angle": 22.1
+    }
+  },
+  {
+    "frame": 27,
+    "timestamp_s": 0.9,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 151.5,
+      "right_elbow_angle": 63.5,
+      "left_knee_angle": 175.3,
+      "right_knee_angle": 171.8,
+      "left_hip_angle": 167.8,
+      "right_hip_angle": 176.2,
+      "left_shoulder_angle": 8.7,
+      "right_shoulder_angle": 21.4
+    }
+  },
+  {
+    "frame": 28,
+    "timestamp_s": 0.933,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 148.3,
+      "right_elbow_angle": 72.2,
+      "left_knee_angle": 175.5,
+      "right_knee_angle": 171.5,
+      "left_hip_angle": 167.9,
+      "right_hip_angle": 176.6,
+      "left_shoulder_angle": 9.3,
+      "right_shoulder_angle": 21.7
+    }
+  },
+  {
+    "frame": 29,
+    "timestamp_s": 0.967,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 145.7,
+      "right_elbow_angle": 81.8,
+      "left_knee_angle": 175.5,
+      "right_knee_angle": 171.3,
+      "left_hip_angle": 167.9,
+      "right_hip_angle": 177.0,
+      "left_shoulder_angle": 9.8,
+      "right_shoulder_angle": 21.4
+    }
+  },
+  {
+    "frame": 30,
+    "timestamp_s": 1.0,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 142.6,
+      "right_elbow_angle": 90.0,
+      "left_knee_angle": 175.4,
+      "right_knee_angle": 170.9,
+      "left_hip_angle": 168.0,
+      "right_hip_angle": 177.1,
+      "left_shoulder_angle": 9.7,
+      "right_shoulder_angle": 17.0
+    }
+  },
+  {
+    "frame": 31,
+    "timestamp_s": 1.033,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 141.8,
+      "right_elbow_angle": 104.8,
+      "left_knee_angle": 175.2,
+      "right_knee_angle": 169.3,
+      "left_hip_angle": 168.4,
+      "right_hip_angle": 178.4,
+      "left_shoulder_angle": 8.2,
+      "right_shoulder_angle": 17.0
+    }
+  },
+  {
+    "frame": 32,
+    "timestamp_s": 1.067,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 143.8,
+      "right_elbow_angle": 130.3,
+      "left_knee_angle": 174.7,
+      "right_knee_angle": 167.5,
+      "left_hip_angle": 169.1,
+      "right_hip_angle": 179.5,
+      "left_shoulder_angle": 5.4,
+      "right_shoulder_angle": 12.5
+    }
+  },
+  {
+    "frame": 33,
+    "timestamp_s": 1.1,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 145.7,
+      "right_elbow_angle": 155.3,
+      "left_knee_angle": 173.1,
+      "right_knee_angle": 166.9,
+      "left_hip_angle": 169.6,
+      "right_hip_angle": 179.4,
+      "left_shoulder_angle": 3.7,
+      "right_shoulder_angle": 12.8
+    }
+  },
+  {
+    "frame": 34,
+    "timestamp_s": 1.133,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 150.6,
+      "right_elbow_angle": 168.7,
+      "left_knee_angle": 171.1,
+      "right_knee_angle": 167.7,
+      "left_hip_angle": 171.0,
+      "right_hip_angle": 179.1,
+      "left_shoulder_angle": 1.5,
+      "right_shoulder_angle": 12.9
+    }
+  },
+  {
+    "frame": 35,
+    "timestamp_s": 1.167,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 150.5,
+      "right_elbow_angle": 171.6,
+      "left_knee_angle": 169.2,
+      "right_knee_angle": 168.2,
+      "left_hip_angle": 172.4,
+      "right_hip_angle": 179.6,
+      "left_shoulder_angle": 2.9,
+      "right_shoulder_angle": 11.9
+    }
+  },
+  {
+    "frame": 36,
+    "timestamp_s": 1.2,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 148.6,
+      "right_elbow_angle": 172.4,
+      "left_knee_angle": 166.0,
+      "right_knee_angle": 167.2,
+      "left_hip_angle": 175.0,
+      "right_hip_angle": 179.3,
+      "left_shoulder_angle": 2.9,
+      "right_shoulder_angle": 11.8
+    }
+  },
+  {
+    "frame": 37,
+    "timestamp_s": 1.233,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 147.2,
+      "right_elbow_angle": 165.6,
+      "left_knee_angle": 163.6,
+      "right_knee_angle": 165.2,
+      "left_hip_angle": 177.2,
+      "right_hip_angle": 176.5,
+      "left_shoulder_angle": 3.9,
+      "right_shoulder_angle": 9.9
+    }
+  },
+  {
+    "frame": 38,
+    "timestamp_s": 1.267,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 144.1,
+      "right_elbow_angle": 158.6,
+      "left_knee_angle": 162.7,
+      "right_knee_angle": 164.4,
+      "left_hip_angle": 178.7,
+      "right_hip_angle": 174.7,
+      "left_shoulder_angle": 4.3,
+      "right_shoulder_angle": 9.1
+    }
+  },
+  {
+    "frame": 39,
+    "timestamp_s": 1.3,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 134.2,
+      "right_elbow_angle": 147.0,
+      "left_knee_angle": 161.3,
+      "right_knee_angle": 161.6,
+      "left_hip_angle": 178.8,
+      "right_hip_angle": 172.1,
+      "left_shoulder_angle": 2.4,
+      "right_shoulder_angle": 8.4
+    }
+  },
+  {
+    "frame": 40,
+    "timestamp_s": 1.333,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 127.4,
+      "right_elbow_angle": 139.6,
+      "left_knee_angle": 158.9,
+      "right_knee_angle": 159.8,
+      "left_hip_angle": 174.5,
+      "right_hip_angle": 169.4,
+      "left_shoulder_angle": 2.4,
+      "right_shoulder_angle": 9.8
+    }
+  },
+  {
+    "frame": 41,
+    "timestamp_s": 1.367,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 120.1,
+      "right_elbow_angle": 131.6,
+      "left_knee_angle": 154.8,
+      "right_knee_angle": 156.3,
+      "left_hip_angle": 169.9,
+      "right_hip_angle": 165.6,
+      "left_shoulder_angle": 2.5,
+      "right_shoulder_angle": 10.0
+    }
+  },
+  {
+    "frame": 42,
+    "timestamp_s": 1.4,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 115.6,
+      "right_elbow_angle": 134.5,
+      "left_knee_angle": 153.4,
+      "right_knee_angle": 154.7,
+      "left_hip_angle": 167.8,
+      "right_hip_angle": 163.2,
+      "left_shoulder_angle": 3.0,
+      "right_shoulder_angle": 10.1
+    }
+  },
+  {
+    "frame": 43,
+    "timestamp_s": 1.433,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 117.4,
+      "right_elbow_angle": 139.3,
+      "left_knee_angle": 152.6,
+      "right_knee_angle": 152.6,
+      "left_hip_angle": 165.2,
+      "right_hip_angle": 159.6,
+      "left_shoulder_angle": 3.3,
+      "right_shoulder_angle": 10.3
+    }
+  },
+  {
+    "frame": 44,
+    "timestamp_s": 1.467,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 120.1,
+      "right_elbow_angle": 143.0,
+      "left_knee_angle": 152.0,
+      "right_knee_angle": 150.4,
+      "left_hip_angle": 160.7,
+      "right_hip_angle": 155.7,
+      "left_shoulder_angle": 7.0,
+      "right_shoulder_angle": 12.5
+    }
+  },
+  {
+    "frame": 45,
+    "timestamp_s": 1.5,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 121.5,
+      "right_elbow_angle": 144.0,
+      "left_knee_angle": 147.7,
+      "right_knee_angle": 146.8,
+      "left_hip_angle": 153.8,
+      "right_hip_angle": 150.0,
+      "left_shoulder_angle": 11.3,
+      "right_shoulder_angle": 11.7
+    }
+  },
+  {
+    "frame": 46,
+    "timestamp_s": 1.533,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 120.0,
+      "right_elbow_angle": 139.2,
+      "left_knee_angle": 144.2,
+      "right_knee_angle": 141.8,
+      "left_hip_angle": 149.6,
+      "right_hip_angle": 144.1,
+      "left_shoulder_angle": 12.2,
+      "right_shoulder_angle": 10.6
+    }
+  },
+  {
+    "frame": 47,
+    "timestamp_s": 1.567,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 121.6,
+      "right_elbow_angle": 137.2,
+      "left_knee_angle": 140.2,
+      "right_knee_angle": 138.5,
+      "left_hip_angle": 144.2,
+      "right_hip_angle": 139.2,
+      "left_shoulder_angle": 13.6,
+      "right_shoulder_angle": 11.6
+    }
+  },
+  {
+    "frame": 48,
+    "timestamp_s": 1.6,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 123.3,
+      "right_elbow_angle": 136.9,
+      "left_knee_angle": 137.1,
+      "right_knee_angle": 136.4,
+      "left_hip_angle": 140.1,
+      "right_hip_angle": 134.3,
+      "left_shoulder_angle": 15.2,
+      "right_shoulder_angle": 11.7
+    }
+  },
+  {
+    "frame": 49,
+    "timestamp_s": 1.633,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 120.3,
+      "right_elbow_angle": 133.9,
+      "left_knee_angle": 129.8,
+      "right_knee_angle": 128.8,
+      "left_hip_angle": 132.3,
+      "right_hip_angle": 127.3,
+      "left_shoulder_angle": 17.1,
+      "right_shoulder_angle": 12.2
+    }
+  },
+  {
+    "frame": 50,
+    "timestamp_s": 1.667,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 108.5,
+      "right_elbow_angle": 128.7,
+      "left_knee_angle": 125.8,
+      "right_knee_angle": 126.8,
+      "left_hip_angle": 127.4,
+      "right_hip_angle": 123.5,
+      "left_shoulder_angle": 15.5,
+      "right_shoulder_angle": 14.6
+    }
+  },
+  {
+    "frame": 51,
+    "timestamp_s": 1.7,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 110.7,
+      "right_elbow_angle": 130.7,
+      "left_knee_angle": 124.2,
+      "right_knee_angle": 122.0,
+      "left_hip_angle": 123.9,
+      "right_hip_angle": 118.8,
+      "left_shoulder_angle": 16.8,
+      "right_shoulder_angle": 19.3
+    }
+  },
+  {
+    "frame": 52,
+    "timestamp_s": 1.733,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 115.2,
+      "right_elbow_angle": 133.8,
+      "left_knee_angle": 123.8,
+      "right_knee_angle": 118.9,
+      "left_hip_angle": 121.6,
+      "right_hip_angle": 122.7,
+      "left_shoulder_angle": 22.0,
+      "right_shoulder_angle": 18.2
+    }
+  },
+  {
+    "frame": 53,
+    "timestamp_s": 1.767,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 121.2,
+      "right_elbow_angle": 139.1,
+      "left_knee_angle": 123.3,
+      "right_knee_angle": 121.5,
+      "left_hip_angle": 119.4,
+      "right_hip_angle": 124.5,
+      "left_shoulder_angle": 26.2,
+      "right_shoulder_angle": 20.5
+    }
+  },
+  {
+    "frame": 54,
+    "timestamp_s": 1.8,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 126.6,
+      "right_elbow_angle": 136.7,
+      "left_knee_angle": 123.5,
+      "right_knee_angle": 124.3,
+      "left_hip_angle": 116.9,
+      "right_hip_angle": 124.3,
+      "left_shoulder_angle": 33.2,
+      "right_shoulder_angle": 19.5
+    }
+  },
+  {
+    "frame": 55,
+    "timestamp_s": 1.833,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 126.4,
+      "right_elbow_angle": 135.4,
+      "left_knee_angle": 124.8,
+      "right_knee_angle": 122.3,
+      "left_hip_angle": 116.6,
+      "right_hip_angle": 123.7,
+      "left_shoulder_angle": 33.5,
+      "right_shoulder_angle": 20.2
+    }
+  },
+  {
+    "frame": 56,
+    "timestamp_s": 1.867,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 120.0,
+      "right_elbow_angle": 135.0,
+      "left_knee_angle": 124.2,
+      "right_knee_angle": 120.2,
+      "left_hip_angle": 115.8,
+      "right_hip_angle": 117.0,
+      "left_shoulder_angle": 33.5,
+      "right_shoulder_angle": 22.1
+    }
+  },
+  {
+    "frame": 57,
+    "timestamp_s": 1.9,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 119.2,
+      "right_elbow_angle": 138.4,
+      "left_knee_angle": 123.8,
+      "right_knee_angle": 118.0,
+      "left_hip_angle": 115.0,
+      "right_hip_angle": 112.4,
+      "left_shoulder_angle": 32.6,
+      "right_shoulder_angle": 24.7
+    }
+  },
+  {
+    "frame": 58,
+    "timestamp_s": 1.933,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 112.5,
+      "right_elbow_angle": 129.0,
+      "left_knee_angle": 123.5,
+      "right_knee_angle": 119.6,
+      "left_hip_angle": 113.5,
+      "right_hip_angle": 112.2,
+      "left_shoulder_angle": 29.4,
+      "right_shoulder_angle": 24.2
+    }
+  },
+  {
+    "frame": 59,
+    "timestamp_s": 1.967,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 103.5,
+      "right_elbow_angle": 123.5,
+      "left_knee_angle": 124.4,
+      "right_knee_angle": 121.1,
+      "left_hip_angle": 113.4,
+      "right_hip_angle": 112.0,
+      "left_shoulder_angle": 27.2,
+      "right_shoulder_angle": 22.6
+    }
+  },
+  {
+    "frame": 60,
+    "timestamp_s": 2.0,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 96.6,
+      "right_elbow_angle": 122.1,
+      "left_knee_angle": 125.4,
+      "right_knee_angle": 120.8,
+      "left_hip_angle": 114.8,
+      "right_hip_angle": 111.4,
+      "left_shoulder_angle": 23.9,
+      "right_shoulder_angle": 23.2
+    }
+  },
+  {
+    "frame": 61,
+    "timestamp_s": 2.033,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 95.9,
+      "right_elbow_angle": 124.6,
+      "left_knee_angle": 128.1,
+      "right_knee_angle": 119.8,
+      "left_hip_angle": 117.2,
+      "right_hip_angle": 110.3,
+      "left_shoulder_angle": 21.3,
+      "right_shoulder_angle": 26.7
+    }
+  },
+  {
+    "frame": 62,
+    "timestamp_s": 2.067,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 97.2,
+      "right_elbow_angle": 128.1,
+      "left_knee_angle": 115.9,
+      "right_knee_angle": 110.5,
+      "left_hip_angle": 111.7,
+      "right_hip_angle": 107.3,
+      "left_shoulder_angle": 19.8,
+      "right_shoulder_angle": 28.5
+    }
+  },
+  {
+    "frame": 63,
+    "timestamp_s": 2.1,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 107.7,
+      "right_elbow_angle": 130.4,
+      "left_knee_angle": 112.4,
+      "right_knee_angle": 109.4,
+      "left_hip_angle": 109.1,
+      "right_hip_angle": 106.7,
+      "left_shoulder_angle": 19.4,
+      "right_shoulder_angle": 28.5
+    }
+  },
+  {
+    "frame": 64,
+    "timestamp_s": 2.133,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 105.5,
+      "right_elbow_angle": 131.7,
+      "left_knee_angle": 109.0,
+      "right_knee_angle": 107.6,
+      "left_hip_angle": 104.1,
+      "right_hip_angle": 105.1,
+      "left_shoulder_angle": 20.3,
+      "right_shoulder_angle": 28.5
+    }
+  },
+  {
+    "frame": 65,
+    "timestamp_s": 2.167,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 113.2,
+      "right_elbow_angle": 136.5,
+      "left_knee_angle": 109.5,
+      "right_knee_angle": 109.0,
+      "left_hip_angle": 99.4,
+      "right_hip_angle": 104.1,
+      "left_shoulder_angle": 25.9,
+      "right_shoulder_angle": 29.7
+    }
+  },
+  {
+    "frame": 66,
+    "timestamp_s": 2.2,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 118.0,
+      "right_elbow_angle": 140.4,
+      "left_knee_angle": 109.5,
+      "right_knee_angle": 110.1,
+      "left_hip_angle": 94.6,
+      "right_hip_angle": 102.8,
+      "left_shoulder_angle": 27.7,
+      "right_shoulder_angle": 32.1
+    }
+  },
+  {
+    "frame": 67,
+    "timestamp_s": 2.233,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 124.5,
+      "right_elbow_angle": 143.5,
+      "left_knee_angle": 109.1,
+      "right_knee_angle": 109.7,
+      "left_hip_angle": 90.5,
+      "right_hip_angle": 100.3,
+      "left_shoulder_angle": 31.8,
+      "right_shoulder_angle": 34.6
+    }
+  },
+  {
+    "frame": 68,
+    "timestamp_s": 2.267,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 127.3,
+      "right_elbow_angle": 144.7,
+      "left_knee_angle": 106.8,
+      "right_knee_angle": 108.8,
+      "left_hip_angle": 89.6,
+      "right_hip_angle": 100.3,
+      "left_shoulder_angle": 38.5,
+      "right_shoulder_angle": 36.4
+    }
+  },
+  {
+    "frame": 69,
+    "timestamp_s": 2.3,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 128.7,
+      "right_elbow_angle": 146.1,
+      "left_knee_angle": 103.2,
+      "right_knee_angle": 107.0,
+      "left_hip_angle": 88.3,
+      "right_hip_angle": 99.3,
+      "left_shoulder_angle": 44.0,
+      "right_shoulder_angle": 42.5
+    }
+  },
+  {
+    "frame": 70,
+    "timestamp_s": 2.333,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 134.0,
+      "right_elbow_angle": 146.8,
+      "left_knee_angle": 100.1,
+      "right_knee_angle": 103.4,
+      "left_hip_angle": 87.7,
+      "right_hip_angle": 99.6,
+      "left_shoulder_angle": 55.1,
+      "right_shoulder_angle": 48.7
+    }
+  },
+  {
+    "frame": 71,
+    "timestamp_s": 2.367,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 134.7,
+      "right_elbow_angle": 143.5,
+      "left_knee_angle": 98.9,
+      "right_knee_angle": 102.3,
+      "left_hip_angle": 90.1,
+      "right_hip_angle": 102.2,
+      "left_shoulder_angle": 63.1,
+      "right_shoulder_angle": 51.2
+    }
+  },
+  {
+    "frame": 72,
+    "timestamp_s": 2.4,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 133.2,
+      "right_elbow_angle": 136.0,
+      "left_knee_angle": 98.8,
+      "right_knee_angle": 104.2,
+      "left_hip_angle": 95.3,
+      "right_hip_angle": 107.4,
+      "left_shoulder_angle": 77.3,
+      "right_shoulder_angle": 60.1
+    }
+  },
+  {
+    "frame": 73,
+    "timestamp_s": 2.433,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 132.7,
+      "right_elbow_angle": 145.2,
+      "left_knee_angle": 99.4,
+      "right_knee_angle": 104.5,
+      "left_hip_angle": 105.1,
+      "right_hip_angle": 113.0,
+      "left_shoulder_angle": 79.1,
+      "right_shoulder_angle": 78.5
+    }
+  },
+  {
+    "frame": 74,
+    "timestamp_s": 2.467,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 126.8,
+      "right_elbow_angle": 117.8,
+      "left_knee_angle": 106.3,
+      "right_knee_angle": 109.4,
+      "left_hip_angle": 118.3,
+      "right_hip_angle": 120.8,
+      "left_shoulder_angle": 86.8,
+      "right_shoulder_angle": 78.3
+    }
+  },
+  {
+    "frame": 75,
+    "timestamp_s": 2.5,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 123.7,
+      "right_elbow_angle": 112.5,
+      "left_knee_angle": 117.6,
+      "right_knee_angle": 120.1,
+      "left_hip_angle": 132.5,
+      "right_hip_angle": 134.1,
+      "left_shoulder_angle": 89.7,
+      "right_shoulder_angle": 86.3
+    }
+  },
+  {
+    "frame": 76,
+    "timestamp_s": 2.533,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 108.4,
+      "right_elbow_angle": 110.5,
+      "left_knee_angle": 129.6,
+      "right_knee_angle": 140.8,
+      "left_hip_angle": 145.0,
+      "right_hip_angle": 154.0,
+      "left_shoulder_angle": 103.3,
+      "right_shoulder_angle": 97.9
+    }
+  },
+  {
+    "frame": 77,
+    "timestamp_s": 2.567,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 101.9,
+      "right_elbow_angle": 103.9,
+      "left_knee_angle": 150.8,
+      "right_knee_angle": 164.0,
+      "left_hip_angle": 158.8,
+      "right_hip_angle": 167.0,
+      "left_shoulder_angle": 107.7,
+      "right_shoulder_angle": 105.5
+    }
+  },
+  {
+    "frame": 78,
+    "timestamp_s": 2.6,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 92.9,
+      "right_elbow_angle": 83.1,
+      "left_knee_angle": 176.3,
+      "right_knee_angle": 175.6,
+      "left_hip_angle": 173.1,
+      "right_hip_angle": 172.7,
+      "left_shoulder_angle": 115.6,
+      "right_shoulder_angle": 97.6
+    }
+  },
+  {
+    "frame": 79,
+    "timestamp_s": 2.633,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 99.6,
+      "right_elbow_angle": 103.7,
+      "left_knee_angle": 179.4,
+      "right_knee_angle": 177.3,
+      "left_hip_angle": 178.0,
+      "right_hip_angle": 179.5,
+      "left_shoulder_angle": 122.2,
+      "right_shoulder_angle": 128.3
+    }
+  },
+  {
+    "frame": 80,
+    "timestamp_s": 2.667,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 92.7,
+      "right_elbow_angle": 93.8,
+      "left_knee_angle": 169.0,
+      "right_knee_angle": 170.0,
+      "left_hip_angle": 173.3,
+      "right_hip_angle": 172.4,
+      "left_shoulder_angle": 117.7,
+      "right_shoulder_angle": 115.1
+    }
+  },
+  {
+    "frame": 81,
+    "timestamp_s": 2.7,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 72.0,
+      "right_elbow_angle": 101.4,
+      "left_knee_angle": 159.2,
+      "right_knee_angle": 160.9,
+      "left_hip_angle": 165.3,
+      "right_hip_angle": 167.0,
+      "left_shoulder_angle": 116.9,
+      "right_shoulder_angle": 123.0
+    }
+  },
+  {
+    "frame": 82,
+    "timestamp_s": 2.733,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 85.4,
+      "right_elbow_angle": 98.5,
+      "left_knee_angle": 157.3,
+      "right_knee_angle": 162.1,
+      "left_hip_angle": 158.8,
+      "right_hip_angle": 159.5,
+      "left_shoulder_angle": 110.5,
+      "right_shoulder_angle": 106.1
+    }
+  },
+  {
+    "frame": 83,
+    "timestamp_s": 2.767,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 81.2,
+      "right_elbow_angle": 113.9,
+      "left_knee_angle": 157.0,
+      "right_knee_angle": 164.4,
+      "left_hip_angle": 157.3,
+      "right_hip_angle": 157.9,
+      "left_shoulder_angle": 109.4,
+      "right_shoulder_angle": 114.0
+    }
+  },
+  {
+    "frame": 84,
+    "timestamp_s": 2.8,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 112.2,
+      "right_elbow_angle": 82.9,
+      "left_knee_angle": 156.6,
+      "right_knee_angle": 163.5,
+      "left_hip_angle": 158.5,
+      "right_hip_angle": 158.3,
+      "left_shoulder_angle": 111.0,
+      "right_shoulder_angle": 55.1
+    }
+  },
+  {
+    "frame": 85,
+    "timestamp_s": 2.833,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 116.9,
+      "right_elbow_angle": 108.3,
+      "left_knee_angle": 154.9,
+      "right_knee_angle": 167.2,
+      "left_hip_angle": 161.0,
+      "right_hip_angle": 161.3,
+      "left_shoulder_angle": 97.0,
+      "right_shoulder_angle": 79.8
+    }
+  },
+  {
+    "frame": 86,
+    "timestamp_s": 2.867,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 115.6,
+      "right_elbow_angle": 132.9,
+      "left_knee_angle": 158.1,
+      "right_knee_angle": 168.8,
+      "left_hip_angle": 162.7,
+      "right_hip_angle": 166.2,
+      "left_shoulder_angle": 94.6,
+      "right_shoulder_angle": 99.0
+    }
+  },
+  {
+    "frame": 87,
+    "timestamp_s": 2.9,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 138.7,
+      "right_elbow_angle": 131.6,
+      "left_knee_angle": 161.0,
+      "right_knee_angle": 164.7,
+      "left_hip_angle": 164.6,
+      "right_hip_angle": 173.4,
+      "left_shoulder_angle": 86.6,
+      "right_shoulder_angle": 95.5
+    }
+  },
+  {
+    "frame": 88,
+    "timestamp_s": 2.933,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 137.6,
+      "right_elbow_angle": 132.1,
+      "left_knee_angle": 166.2,
+      "right_knee_angle": 166.4,
+      "left_hip_angle": 166.6,
+      "right_hip_angle": 177.4,
+      "left_shoulder_angle": 83.3,
+      "right_shoulder_angle": 116.7
+    }
+  },
+  {
+    "frame": 89,
+    "timestamp_s": 2.967,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 121.1,
+      "right_elbow_angle": 132.9,
+      "left_knee_angle": 169.9,
+      "right_knee_angle": 164.2,
+      "left_hip_angle": 169.2,
+      "right_hip_angle": 178.3,
+      "left_shoulder_angle": 64.1,
+      "right_shoulder_angle": 111.2
+    }
+  },
+  {
+    "frame": 90,
+    "timestamp_s": 3.0,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 132.7,
+      "right_elbow_angle": 125.1,
+      "left_knee_angle": 171.8,
+      "right_knee_angle": 160.7,
+      "left_hip_angle": 171.6,
+      "right_hip_angle": 170.5,
+      "left_shoulder_angle": 66.6,
+      "right_shoulder_angle": 125.2
+    }
+  },
+  {
+    "frame": 91,
+    "timestamp_s": 3.033,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 119.1,
+      "right_elbow_angle": 99.8,
+      "left_knee_angle": 172.4,
+      "right_knee_angle": 161.2,
+      "left_hip_angle": 177.0,
+      "right_hip_angle": 167.3,
+      "left_shoulder_angle": 64.0,
+      "right_shoulder_angle": 110.1
+    }
+  },
+  {
+    "frame": 92,
+    "timestamp_s": 3.067,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 122.8,
+      "right_elbow_angle": 88.5,
+      "left_knee_angle": 169.5,
+      "right_knee_angle": 160.0,
+      "left_hip_angle": 175.7,
+      "right_hip_angle": 164.2,
+      "left_shoulder_angle": 63.1,
+      "right_shoulder_angle": 101.0
+    }
+  },
+  {
+    "frame": 93,
+    "timestamp_s": 3.1,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 111.7,
+      "right_elbow_angle": 82.4,
+      "left_knee_angle": 165.9,
+      "right_knee_angle": 156.7,
+      "left_hip_angle": 171.6,
+      "right_hip_angle": 160.4,
+      "left_shoulder_angle": 46.6,
+      "right_shoulder_angle": 94.0
+    }
+  },
+  {
+    "frame": 94,
+    "timestamp_s": 3.133,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 128.8,
+      "right_elbow_angle": 79.3,
+      "left_knee_angle": 155.9,
+      "right_knee_angle": 147.3,
+      "left_hip_angle": 164.0,
+      "right_hip_angle": 156.6,
+      "left_shoulder_angle": 41.0,
+      "right_shoulder_angle": 80.3
+    }
+  },
+  {
+    "frame": 95,
+    "timestamp_s": 3.167,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 96.5,
+      "right_elbow_angle": 73.9,
+      "left_knee_angle": 129.4,
+      "right_knee_angle": 130.0,
+      "left_hip_angle": 148.3,
+      "right_hip_angle": 144.2,
+      "left_shoulder_angle": 39.7,
+      "right_shoulder_angle": 70.5
+    }
+  },
+  {
+    "frame": 96,
+    "timestamp_s": 3.2,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 101.3,
+      "right_elbow_angle": 68.8,
+      "left_knee_angle": 116.9,
+      "right_knee_angle": 125.3,
+      "left_hip_angle": 139.9,
+      "right_hip_angle": 137.9,
+      "left_shoulder_angle": 34.8,
+      "right_shoulder_angle": 50.7
+    }
+  },
+  {
+    "frame": 97,
+    "timestamp_s": 3.233,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 100.4,
+      "right_elbow_angle": 80.1,
+      "left_knee_angle": 111.9,
+      "right_knee_angle": 115.5,
+      "left_hip_angle": 135.8,
+      "right_hip_angle": 132.9,
+      "left_shoulder_angle": 27.8,
+      "right_shoulder_angle": 43.0
+    }
+  },
+  {
+    "frame": 98,
+    "timestamp_s": 3.267,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 108.0,
+      "right_elbow_angle": 130.5,
+      "left_knee_angle": 110.4,
+      "right_knee_angle": 108.2,
+      "left_hip_angle": 135.6,
+      "right_hip_angle": 131.4,
+      "left_shoulder_angle": 20.9,
+      "right_shoulder_angle": 34.8
+    }
+  },
+  {
+    "frame": 99,
+    "timestamp_s": 3.3,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 115.6,
+      "right_elbow_angle": 133.3,
+      "left_knee_angle": 106.2,
+      "right_knee_angle": 107.0,
+      "left_hip_angle": 134.5,
+      "right_hip_angle": 130.6,
+      "left_shoulder_angle": 14.4,
+      "right_shoulder_angle": 22.3
+    }
+  },
+  {
+    "frame": 100,
+    "timestamp_s": 3.333,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 137.0,
+      "right_elbow_angle": 133.9,
+      "left_knee_angle": 104.1,
+      "right_knee_angle": 105.1,
+      "left_hip_angle": 132.8,
+      "right_hip_angle": 128.4,
+      "left_shoulder_angle": 12.1,
+      "right_shoulder_angle": 16.5
+    }
+  },
+  {
+    "frame": 101,
+    "timestamp_s": 3.367,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 151.7,
+      "right_elbow_angle": 137.9,
+      "left_knee_angle": 103.2,
+      "right_knee_angle": 106.6,
+      "left_hip_angle": 136.0,
+      "right_hip_angle": 129.9,
+      "left_shoulder_angle": 4.6,
+      "right_shoulder_angle": 8.8
+    }
+  },
+  {
+    "frame": 102,
+    "timestamp_s": 3.4,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 164.6,
+      "right_elbow_angle": 144.3,
+      "left_knee_angle": 107.3,
+      "right_knee_angle": 109.4,
+      "left_hip_angle": 140.5,
+      "right_hip_angle": 136.6,
+      "left_shoulder_angle": 3.8,
+      "right_shoulder_angle": 3.9
+    }
+  },
+  {
+    "frame": 103,
+    "timestamp_s": 3.433,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 177.1,
+      "right_elbow_angle": 161.4,
+      "left_knee_angle": 103.1,
+      "right_knee_angle": 109.3,
+      "left_hip_angle": 141.4,
+      "right_hip_angle": 139.4,
+      "left_shoulder_angle": 4.7,
+      "right_shoulder_angle": 2.8
+    }
+  },
+  {
+    "frame": 104,
+    "timestamp_s": 3.467,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 173.6,
+      "right_elbow_angle": 162.2,
+      "left_knee_angle": 110.5,
+      "right_knee_angle": 113.5,
+      "left_hip_angle": 148.5,
+      "right_hip_angle": 145.1,
+      "left_shoulder_angle": 10.9,
+      "right_shoulder_angle": 0.6
+    }
+  },
+  {
+    "frame": 105,
+    "timestamp_s": 3.5,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 165.6,
+      "right_elbow_angle": 170.7,
+      "left_knee_angle": 118.3,
+      "right_knee_angle": 116.9,
+      "left_hip_angle": 151.9,
+      "right_hip_angle": 148.8,
+      "left_shoulder_angle": 10.6,
+      "right_shoulder_angle": 2.7
+    }
+  },
+  {
+    "frame": 106,
+    "timestamp_s": 3.533,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 165.0,
+      "right_elbow_angle": 167.4,
+      "left_knee_angle": 122.2,
+      "right_knee_angle": 122.1,
+      "left_hip_angle": 154.7,
+      "right_hip_angle": 152.9,
+      "left_shoulder_angle": 12.2,
+      "right_shoulder_angle": 5.1
+    }
+  },
+  {
+    "frame": 107,
+    "timestamp_s": 3.567,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 170.4,
+      "right_elbow_angle": 173.3,
+      "left_knee_angle": 127.7,
+      "right_knee_angle": 127.6,
+      "left_hip_angle": 159.1,
+      "right_hip_angle": 155.8,
+      "left_shoulder_angle": 13.8,
+      "right_shoulder_angle": 7.2
+    }
+  },
+  {
+    "frame": 108,
+    "timestamp_s": 3.6,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 171.0,
+      "right_elbow_angle": 173.5,
+      "left_knee_angle": 132.9,
+      "right_knee_angle": 134.6,
+      "left_hip_angle": 164.7,
+      "right_hip_angle": 160.8,
+      "left_shoulder_angle": 16.2,
+      "right_shoulder_angle": 5.1
+    }
+  },
+  {
+    "frame": 109,
+    "timestamp_s": 3.633,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 177.2,
+      "right_elbow_angle": 178.4,
+      "left_knee_angle": 139.3,
+      "right_knee_angle": 144.5,
+      "left_hip_angle": 168.4,
+      "right_hip_angle": 166.5,
+      "left_shoulder_angle": 18.7,
+      "right_shoulder_angle": 2.1
+    }
+  },
+  {
+    "frame": 110,
+    "timestamp_s": 3.667,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 177.8,
+      "right_elbow_angle": 178.9,
+      "left_knee_angle": 146.9,
+      "right_knee_angle": 153.8,
+      "left_hip_angle": 173.5,
+      "right_hip_angle": 171.5,
+      "left_shoulder_angle": 19.8,
+      "right_shoulder_angle": 2.9
+    }
+  },
+  {
+    "frame": 111,
+    "timestamp_s": 3.7,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 177.7,
+      "right_elbow_angle": 177.2,
+      "left_knee_angle": 155.4,
+      "right_knee_angle": 161.0,
+      "left_hip_angle": 178.4,
+      "right_hip_angle": 176.5,
+      "left_shoulder_angle": 18.9,
+      "right_shoulder_angle": 8.1
+    }
+  },
+  {
+    "frame": 112,
+    "timestamp_s": 3.733,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 170.6,
+      "right_elbow_angle": 177.6,
+      "left_knee_angle": 164.0,
+      "right_knee_angle": 164.7,
+      "left_hip_angle": 176.1,
+      "right_hip_angle": 180.0,
+      "left_shoulder_angle": 18.5,
+      "right_shoulder_angle": 11.2
+    }
+  },
+  {
+    "frame": 113,
+    "timestamp_s": 3.767,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 158.5,
+      "right_elbow_angle": 177.9,
+      "left_knee_angle": 168.1,
+      "right_knee_angle": 167.1,
+      "left_hip_angle": 173.7,
+      "right_hip_angle": 178.2,
+      "left_shoulder_angle": 18.0,
+      "right_shoulder_angle": 12.9
+    }
+  },
+  {
+    "frame": 114,
+    "timestamp_s": 3.8,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 156.1,
+      "right_elbow_angle": 179.9,
+      "left_knee_angle": 171.9,
+      "right_knee_angle": 168.4,
+      "left_hip_angle": 170.6,
+      "right_hip_angle": 176.0,
+      "left_shoulder_angle": 14.4,
+      "right_shoulder_angle": 16.3
+    }
+  },
+  {
+    "frame": 115,
+    "timestamp_s": 3.833,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 161.0,
+      "right_elbow_angle": 178.1,
+      "left_knee_angle": 174.7,
+      "right_knee_angle": 171.0,
+      "left_hip_angle": 168.4,
+      "right_hip_angle": 175.2,
+      "left_shoulder_angle": 8.3,
+      "right_shoulder_angle": 18.1
+    }
+  },
+  {
+    "frame": 116,
+    "timestamp_s": 3.867,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 159.7,
+      "right_elbow_angle": 177.0,
+      "left_knee_angle": 176.4,
+      "right_knee_angle": 170.9,
+      "left_hip_angle": 167.1,
+      "right_hip_angle": 175.1,
+      "left_shoulder_angle": 5.9,
+      "right_shoulder_angle": 20.8
+    }
+  },
+  {
+    "frame": 117,
+    "timestamp_s": 3.9,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 159.1,
+      "right_elbow_angle": 173.5,
+      "left_knee_angle": 175.3,
+      "right_knee_angle": 167.6,
+      "left_hip_angle": 166.4,
+      "right_hip_angle": 176.4,
+      "left_shoulder_angle": 2.3,
+      "right_shoulder_angle": 22.2
+    }
+  },
+  {
+    "frame": 118,
+    "timestamp_s": 3.933,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 159.2,
+      "right_elbow_angle": 168.5,
+      "left_knee_angle": 176.5,
+      "right_knee_angle": 164.8,
+      "left_hip_angle": 165.7,
+      "right_hip_angle": 177.8,
+      "left_shoulder_angle": 0.6,
+      "right_shoulder_angle": 24.0
+    }
+  },
+  {
+    "frame": 119,
+    "timestamp_s": 3.967,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 155.9,
+      "right_elbow_angle": 167.7,
+      "left_knee_angle": 172.2,
+      "right_knee_angle": 162.9,
+      "left_hip_angle": 167.8,
+      "right_hip_angle": 179.4,
+      "left_shoulder_angle": 0.2,
+      "right_shoulder_angle": 25.7
+    }
+  },
+  {
+    "frame": 120,
+    "timestamp_s": 4.0,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 160.0,
+      "right_elbow_angle": 167.5,
+      "left_knee_angle": 172.9,
+      "right_knee_angle": 162.7,
+      "left_hip_angle": 167.9,
+      "right_hip_angle": 179.7,
+      "left_shoulder_angle": 1.2,
+      "right_shoulder_angle": 24.9
+    }
+  },
+  {
+    "frame": 121,
+    "timestamp_s": 4.033,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 161.0,
+      "right_elbow_angle": 167.9,
+      "left_knee_angle": 175.0,
+      "right_knee_angle": 165.0,
+      "left_hip_angle": 166.3,
+      "right_hip_angle": 179.7,
+      "left_shoulder_angle": 0.4,
+      "right_shoulder_angle": 23.1
+    }
+  },
+  {
+    "frame": 122,
+    "timestamp_s": 4.067,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 162.3,
+      "right_elbow_angle": 169.2,
+      "left_knee_angle": 177.1,
+      "right_knee_angle": 167.4,
+      "left_hip_angle": 165.4,
+      "right_hip_angle": 178.9,
+      "left_shoulder_angle": 0.1,
+      "right_shoulder_angle": 21.0
+    }
+  },
+  {
+    "frame": 123,
+    "timestamp_s": 4.1,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 163.8,
+      "right_elbow_angle": 173.0,
+      "left_knee_angle": 179.6,
+      "right_knee_angle": 169.7,
+      "left_hip_angle": 164.5,
+      "right_hip_angle": 179.1,
+      "left_shoulder_angle": 1.0,
+      "right_shoulder_angle": 20.4
+    }
+  },
+  {
+    "frame": 124,
+    "timestamp_s": 4.133,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 163.0,
+      "right_elbow_angle": 179.0,
+      "left_knee_angle": 178.4,
+      "right_knee_angle": 172.9,
+      "left_hip_angle": 163.6,
+      "right_hip_angle": 177.7,
+      "left_shoulder_angle": 2.1,
+      "right_shoulder_angle": 20.7
+    }
+  },
+  {
+    "frame": 125,
+    "timestamp_s": 4.167,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 165.2,
+      "right_elbow_angle": 177.4,
+      "left_knee_angle": 176.6,
+      "right_knee_angle": 174.2,
+      "left_hip_angle": 162.7,
+      "right_hip_angle": 178.2,
+      "left_shoulder_angle": 3.7,
+      "right_shoulder_angle": 20.6
+    }
+  },
+  {
+    "frame": 126,
+    "timestamp_s": 4.2,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 166.5,
+      "right_elbow_angle": 176.1,
+      "left_knee_angle": 175.9,
+      "right_knee_angle": 176.4,
+      "left_hip_angle": 163.3,
+      "right_hip_angle": 177.7,
+      "left_shoulder_angle": 6.4,
+      "right_shoulder_angle": 20.0
+    }
+  },
+  {
+    "frame": 127,
+    "timestamp_s": 4.233,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 168.1,
+      "right_elbow_angle": 174.8,
+      "left_knee_angle": 177.0,
+      "right_knee_angle": 176.5,
+      "left_hip_angle": 164.9,
+      "right_hip_angle": 178.2,
+      "left_shoulder_angle": 9.6,
+      "right_shoulder_angle": 20.0
+    }
+  },
+  {
+    "frame": 128,
+    "timestamp_s": 4.267,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 170.6,
+      "right_elbow_angle": 178.0,
+      "left_knee_angle": 178.6,
+      "right_knee_angle": 175.6,
+      "left_hip_angle": 167.1,
+      "right_hip_angle": 177.7,
+      "left_shoulder_angle": 13.0,
+      "right_shoulder_angle": 16.7
+    }
+  },
+  {
+    "frame": 129,
+    "timestamp_s": 4.3,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 176.4,
+      "right_elbow_angle": 179.1,
+      "left_knee_angle": 175.4,
+      "right_knee_angle": 175.6,
+      "left_hip_angle": 169.1,
+      "right_hip_angle": 178.5,
+      "left_shoulder_angle": 14.9,
+      "right_shoulder_angle": 15.6
+    }
+  },
+  {
+    "frame": 130,
+    "timestamp_s": 4.333,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 178.2,
+      "right_elbow_angle": 177.8,
+      "left_knee_angle": 173.2,
+      "right_knee_angle": 175.9,
+      "left_hip_angle": 169.6,
+      "right_hip_angle": 177.8,
+      "left_shoulder_angle": 16.5,
+      "right_shoulder_angle": 15.3
+    }
+  },
+  {
+    "frame": 131,
+    "timestamp_s": 4.367,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 177.0,
+      "right_elbow_angle": 174.3,
+      "left_knee_angle": 173.7,
+      "right_knee_angle": 174.6,
+      "left_hip_angle": 170.0,
+      "right_hip_angle": 178.3,
+      "left_shoulder_angle": 18.6,
+      "right_shoulder_angle": 16.4
+    }
+  },
+  {
+    "frame": 132,
+    "timestamp_s": 4.4,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 174.7,
+      "right_elbow_angle": 172.6,
+      "left_knee_angle": 176.9,
+      "right_knee_angle": 172.3,
+      "left_hip_angle": 170.4,
+      "right_hip_angle": 179.5,
+      "left_shoulder_angle": 18.3,
+      "right_shoulder_angle": 16.3
+    }
+  },
+  {
+    "frame": 133,
+    "timestamp_s": 4.433,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 174.0,
+      "right_elbow_angle": 172.6,
+      "left_knee_angle": 177.0,
+      "right_knee_angle": 172.5,
+      "left_hip_angle": 171.1,
+      "right_hip_angle": 178.0,
+      "left_shoulder_angle": 19.3,
+      "right_shoulder_angle": 16.3
+    }
+  },
+  {
+    "frame": 134,
+    "timestamp_s": 4.467,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 178.5,
+      "right_elbow_angle": 172.4,
+      "left_knee_angle": 177.3,
+      "right_knee_angle": 172.7,
+      "left_hip_angle": 172.8,
+      "right_hip_angle": 176.4,
+      "left_shoulder_angle": 20.0,
+      "right_shoulder_angle": 17.1
+    }
+  },
+  {
+    "frame": 135,
+    "timestamp_s": 4.5,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 179.7,
+      "right_elbow_angle": 171.7,
+      "left_knee_angle": 177.9,
+      "right_knee_angle": 173.3,
+      "left_hip_angle": 172.9,
+      "right_hip_angle": 176.6,
+      "left_shoulder_angle": 19.8,
+      "right_shoulder_angle": 17.7
+    }
+  },
+  {
+    "frame": 136,
+    "timestamp_s": 4.533,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 177.3,
+      "right_elbow_angle": 173.4,
+      "left_knee_angle": 176.6,
+      "right_knee_angle": 174.5,
+      "left_hip_angle": 173.7,
+      "right_hip_angle": 177.2,
+      "left_shoulder_angle": 20.5,
+      "right_shoulder_angle": 16.9
+    }
+  },
+  {
+    "frame": 137,
+    "timestamp_s": 4.567,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 177.3,
+      "right_elbow_angle": 176.8,
+      "left_knee_angle": 177.5,
+      "right_knee_angle": 177.4,
+      "left_hip_angle": 172.5,
+      "right_hip_angle": 178.3,
+      "left_shoulder_angle": 20.1,
+      "right_shoulder_angle": 15.2
+    }
+  },
+  {
+    "frame": 138,
+    "timestamp_s": 4.6,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 177.6,
+      "right_elbow_angle": 178.4,
+      "left_knee_angle": 175.4,
+      "right_knee_angle": 178.7,
+      "left_hip_angle": 174.5,
+      "right_hip_angle": 177.8,
+      "left_shoulder_angle": 19.3,
+      "right_shoulder_angle": 15.0
+    }
+  },
+  {
+    "frame": 139,
+    "timestamp_s": 4.633,
+    "detected": true,
+    "angles": {
+      "left_elbow_angle": 176.2,
+      "right_elbow_angle": 178.4,
+      "left_knee_angle": 176.7,
+      "right_knee_angle": 179.8,
+      "left_hip_angle": 175.4,
+      "right_hip_angle": 176.4,
+      "left_shoulder_angle": 17.9,
+      "right_shoulder_angle": 15.8
+    }
+  }
+]
