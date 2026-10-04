@@ -1,0 +1,74 @@
+prueba,camara,video,real,predicho,acierto,ruta
+LOO tripode,tripode,IMG_3504.mov,brazo,brazo,True,videos/tripode/brazo/IMG_3504.mov
+LOO tripode,tripode,IMG_3505.mov,brazo,brazo,True,videos/tripode/brazo/IMG_3505.mov
+LOO tripode,tripode,IMG_3506.mov,brazo,brazo,True,videos/tripode/brazo/IMG_3506.mov
+LOO tripode,tripode,IMG_3507.mov,brazo,brazo,True,videos/tripode/brazo/IMG_3507.mov
+LOO tripode,tripode,IMG_3508.mov,brazo,brazo,True,videos/tripode/brazo/IMG_3508.mov
+LOO tripode,tripode,IMG_3492.mov,bueno,brazo,False,videos/tripode/bueno/IMG_3492.mov
+LOO tripode,tripode,IMG_3493.mov,bueno,bueno,True,videos/tripode/bueno/IMG_3493.mov
+LOO tripode,tripode,IMG_3494.mov,bueno,bueno,True,videos/tripode/bueno/IMG_3494.mov
+LOO tripode,tripode,IMG_3495.mov,bueno,bueno,True,videos/tripode/bueno/IMG_3495.mov
+LOO tripode,tripode,IMG_3496.mov,bueno,codo,False,videos/tripode/bueno/IMG_3496.mov
+LOO tripode,tripode,IMG_3498.mov,codo,codo,True,videos/tripode/codo/IMG_3498.mov
+LOO tripode,tripode,IMG_3499.mov,codo,codo,True,videos/tripode/codo/IMG_3499.mov
+LOO tripode,tripode,IMG_3500.mov,codo,codo,True,videos/tripode/codo/IMG_3500.mov
+LOO tripode,tripode,IMG_3501.mov,codo,codo,True,videos/tripode/codo/IMG_3501.mov
+LOO tripode,tripode,IMG_3502.mov,codo,codo,True,videos/tripode/codo/IMG_3502.mov
+LOO handheld,handheld,IMG_3520.mov,brazo,codo,False,videos/handheld/brazo/IMG_3520.mov
+LOO handheld,handheld,IMG_3521.mov,brazo,brazo,True,videos/handheld/brazo/IMG_3521.mov
+LOO handheld,handheld,IMG_3522.mov,brazo,brazo,True,videos/handheld/brazo/IMG_3522.mov
+LOO handheld,handheld,IMG_3523.mov,brazo,bueno,False,videos/handheld/brazo/IMG_3523.mov
+LOO handheld,handheld,IMG_3524.mov,brazo,brazo,True,videos/handheld/brazo/IMG_3524.mov
+LOO handheld,handheld,IMG_3509.mov,bueno,bueno,True,videos/handheld/bueno/IMG_3509.mov
+LOO handheld,handheld,IMG_3510.mov,bueno,bueno,True,videos/handheld/bueno/IMG_3510.mov
+LOO handheld,handheld,IMG_3511.mov,bueno,bueno,True,videos/handheld/bueno/IMG_3511.mov
+LOO handheld,handheld,IMG_3512.mov,bueno,bueno,True,videos/handheld/bueno/IMG_3512.mov
+LOO handheld,handheld,IMG_3513.mov,bueno,brazo,False,videos/handheld/bueno/IMG_3513.mov
+LOO handheld,handheld,IMG_3514.mov,codo,codo,True,videos/handheld/codo/IMG_3514.mov
+LOO handheld,handheld,IMG_3515.mov,codo,codo,True,videos/handheld/codo/IMG_3515.mov
+LOO handheld,handheld,IMG_3516.mov,codo,brazo,False,videos/handheld/codo/IMG_3516.mov
+LOO handheld,handheld,IMG_3517.mov,codo,codo,True,videos/handheld/codo/IMG_3517.mov
+LOO piso,piso,IMG_3538.mov,brazo,brazo,True,videos/piso/brazo/IMG_3538.mov
+LOO piso,piso,IMG_3540.mov,brazo,brazo,True,videos/piso/brazo/IMG_3540.mov
+LOO piso,piso,IMG_3541.mov,brazo,brazo,True,videos/piso/brazo/IMG_3541.mov
+LOO piso,piso,IMG_3542.mov,brazo,codo,False,videos/piso/brazo/IMG_3542.mov
+LOO piso,piso,IMG_3543.mov,brazo,brazo,True,videos/piso/brazo/IMG_3543.mov
+LOO piso,piso,IMG_3526.mov,bueno,bueno,True,videos/piso/bueno/IMG_3526.mov
+LOO piso,piso,IMG_3527.mov,bueno,bueno,True,videos/piso/bueno/IMG_3527.mov
+LOO piso,piso,IMG_3528.mov,bueno,bueno,True,videos/piso/bueno/IMG_3528.mov
+LOO piso,piso,IMG_3529.mov,bueno,bueno,True,videos/piso/bueno/IMG_3529.mov
+LOO piso,piso,IMG_3530.mov,bueno,codo,False,videos/piso/bueno/IMG_3530.mov
+LOO piso,piso,IMG_3532.mov,codo,bueno,False,videos/piso/codo/IMG_3532.mov
+LOO piso,piso,IMG_3533.mov,codo,codo,True,videos/piso/codo/IMG_3533.mov
+LOO piso,piso,IMG_3534.mov,codo,brazo,False,videos/piso/codo/IMG_3534.mov
+LOO piso,piso,IMG_3535.mov,codo,codo,True,videos/piso/codo/IMG_3535.mov
+LOO piso,piso,IMG_3536.mov,codo,codo,True,videos/piso/codo/IMG_3536.mov
+tripode->handheld,handheld,IMG_3520.mov,brazo,brazo,True,videos/handheld/brazo/IMG_3520.mov
+tripode->handheld,handheld,IMG_3521.mov,brazo,brazo,True,videos/handheld/brazo/IMG_3521.mov
+tripode->handheld,handheld,IMG_3522.mov,brazo,brazo,True,videos/handheld/brazo/IMG_3522.mov
+tripode->handheld,handheld,IMG_3523.mov,brazo,brazo,True,videos/handheld/brazo/IMG_3523.mov
+tripode->handheld,handheld,IMG_3524.mov,brazo,brazo,True,videos/handheld/brazo/IMG_3524.mov
+tripode->handheld,handheld,IMG_3509.mov,bueno,bueno,True,videos/handheld/bueno/IMG_3509.mov
+tripode->handheld,handheld,IMG_3510.mov,bueno,brazo,False,videos/handheld/bueno/IMG_3510.mov
+tripode->handheld,handheld,IMG_3511.mov,bueno,brazo,False,videos/handheld/bueno/IMG_3511.mov
+tripode->handheld,handheld,IMG_3512.mov,bueno,brazo,False,videos/handheld/bueno/IMG_3512.mov
+tripode->handheld,handheld,IMG_3513.mov,bueno,brazo,False,videos/handheld/bueno/IMG_3513.mov
+tripode->handheld,handheld,IMG_3514.mov,codo,brazo,False,videos/handheld/codo/IMG_3514.mov
+tripode->handheld,handheld,IMG_3515.mov,codo,brazo,False,videos/handheld/codo/IMG_3515.mov
+tripode->handheld,handheld,IMG_3516.mov,codo,brazo,False,videos/handheld/codo/IMG_3516.mov
+tripode->handheld,handheld,IMG_3517.mov,codo,codo,True,videos/handheld/codo/IMG_3517.mov
+tripode->piso,piso,IMG_3538.mov,brazo,codo,False,videos/piso/brazo/IMG_3538.mov
+tripode->piso,piso,IMG_3540.mov,brazo,codo,False,videos/piso/brazo/IMG_3540.mov
+tripode->piso,piso,IMG_3541.mov,brazo,codo,False,videos/piso/brazo/IMG_3541.mov
+tripode->piso,piso,IMG_3542.mov,brazo,bueno,False,videos/piso/brazo/IMG_3542.mov
+tripode->piso,piso,IMG_3543.mov,brazo,bueno,False,videos/piso/brazo/IMG_3543.mov
+tripode->piso,piso,IMG_3526.mov,bueno,codo,False,videos/piso/bueno/IMG_3526.mov
+tripode->piso,piso,IMG_3527.mov,bueno,codo,False,videos/piso/bueno/IMG_3527.mov
+tripode->piso,piso,IMG_3528.mov,bueno,codo,False,videos/piso/bueno/IMG_3528.mov
+tripode->piso,piso,IMG_3529.mov,bueno,codo,False,videos/piso/bueno/IMG_3529.mov
+tripode->piso,piso,IMG_3530.mov,bueno,codo,False,videos/piso/bueno/IMG_3530.mov
+tripode->piso,piso,IMG_3532.mov,codo,codo,True,videos/piso/codo/IMG_3532.mov
+tripode->piso,piso,IMG_3533.mov,codo,codo,True,videos/piso/codo/IMG_3533.mov
+tripode->piso,piso,IMG_3534.mov,codo,codo,True,videos/piso/codo/IMG_3534.mov
+tripode->piso,piso,IMG_3535.mov,codo,codo,True,videos/piso/codo/IMG_3535.mov
+tripode->piso,piso,IMG_3536.mov,codo,codo,True,videos/piso/codo/IMG_3536.mov
