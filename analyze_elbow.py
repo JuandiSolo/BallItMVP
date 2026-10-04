@@ -29,6 +29,8 @@ Ejemplos:
 """
 
 import argparse
+import hashlib
+import json
 import sys
 from pathlib import Path
 
@@ -40,9 +42,14 @@ import experiment as E
 from src.angle_calculator import LANDMARK_IDS
 
 FRONT_METRICS = ["flare", "elbow_vs_wrist", "abduction"]   # tilt se calcula pero no entra a FEATS (se invierte con la muneca baja)
-WINDOWS = ("set", "pre_max", "pre_mean", "lift_max", "lift_mean")
+WINDOWS = ("set", "pre_max", "pre_mean", "lift_max", "lift_mean", "prep_max", "prep_mean")
 FEATS = [f"{m}_{k}" for m in FRONT_METRICS for k in WINDOWS]
-HEADLINE = "flare_lift_max"   # pico de apertura del codo durante todo el levantamiento
+HEADLINE = "flare_lift_max"   # pico de apertura del codo durante todo el levantamiento (metrica por defecto)
+RULE_VERSION = 3
+RULE_FAMILIES = ("_lift_", "_prep_")   # ventanas que NO dependen de que el tiro tenga pausa
+DEFAULT_RULE = {"version": RULE_VERSION, "feature": HEADLINE, "t": 0.38, "direction": "<", "band": 0.04,
+                "good_mean": 0.32, "good_sd": 0.06, "bad_mean": 0.48, "bad_sd": 0.10, "n_good": 5, "n_bad": 5,
+                "source": "regla de ejemplo (de un reporte anterior); corre --videos para calcular la tuya"}
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
 
@@ -70,12 +77,15 @@ def frontal_series(sm: pd.DataFrame, arm: str):
     })
 
 
-def elbow_features(sm: pd.DataFrame, arm: str, frac: float = 0.90):
+def elbow_features(sm: pd.DataFrame, arm: str, frac: float = 0.90, prep_level: float = 0.60):
     """
     Metricas del codo en la fase PREVIA al tiro. Ventanas:
       set        = alrededor del set point (+-2 frames)
       pre_*      = desde que el balon empieza a subir hasta el set point
       lift_*     = desde que el balon empieza a subir hasta el release (NO depende de ubicar bien el set point)
+      prep_*     = desde que el balon empieza a subir hasta que la muneca llega al `prep_level` de su recorrido
+                   (o hasta el set point, lo que ocurra primero): la preparacion, sin la extension final del brazo.
+                   Tampoco depende de que el tiro tenga pausa.
     Devuelve tambien el frame del 'pico': donde el codo estuvo mas abierto durante el levantamiento.
     """
     h = E.wrist_height(sm, arm)
@@ -90,20 +100,27 @@ def elbow_features(sm: pd.DataFrame, arm: str, frac: float = 0.90):
     low = hn[(hn.index <= set_f) & (hn <= 0.10)]
     start_f = int(low.index[-1]) if len(low) else int(hn.index[0])  # inicio del levantamiento del balon
     end_f = max(set_f, rel_f)
+    lvl = hn[(hn.index >= start_f) & (hn >= prep_level)]
+    prep_end = min(set_f, int(lvl.index[0])) if len(lvl) else set_f
 
     def win(a, b):
         return series[(series.index >= a) & (series.index <= b)]
 
     pre, lift, around = win(start_f, set_f), win(start_f, end_f), win(set_f - 2, set_f + 2)
+    prep = win(start_f, prep_end)
+    if len(prep) < 2:
+        prep = pre
     if len(pre) < 3 or len(lift) < 3 or len(around) == 0 or lift["flare"].dropna().empty:
         return None
-    out = {"has_pause": bool(rel_f - set_f >= 3),
+    out = {"has_pause": bool(rel_f - set_f >= 3), "gap_frames": int(rel_f - set_f),
            "start_frame": int(start_f), "set_frame": int(set_f), "release_frame": int(rel_f),
-           "peak_frame": int(lift["flare"].idxmax()), "tilt_set": float(around["tilt"].median())}
+           "prep_frame": int(prep_end), "peak_frame": int(lift["flare"].idxmax()),
+           "tilt_set": float(around["tilt"].median())}
     for m in FRONT_METRICS:
         out[f"{m}_set"] = float(around[m].median())
         out[f"{m}_pre_max"], out[f"{m}_pre_mean"] = float(pre[m].max()), float(pre[m].mean())
         out[f"{m}_lift_max"], out[f"{m}_lift_mean"] = float(lift[m].max()), float(lift[m].mean())
+        out[f"{m}_prep_max"], out[f"{m}_prep_mean"] = float(prep[m].max()), float(prep[m].mean())
     return out
 
 
@@ -113,7 +130,7 @@ def process_video(path: Path, out_dir: Path, args):
     det, sm = E._smoothed(df)
     if len(det) < E.MIN_DETECTED_FRAMES:
         return None
-    f = elbow_features(sm, args.arm, args.frac)
+    f = elbow_features(sm, args.arm, args.frac, args.prep_level)
     if f is None:
         return None
     f["detection_rate"] = 100 * len(det) / max(len(df), 1)
@@ -177,11 +194,14 @@ def make_tile(img, sm, frame, arm, bbox, caption, note="", target_h=460):
     return np.vstack([bar, crop])
 
 
-def frame_tile(path, sm, f, which, caption, arm):
-    """Imagen recortada de un momento del tiro: which = 'peak' (codo mas abierto), 'set' o 'release'."""
+def frame_tile(path, sm, f, which, caption, arm, preloaded=None):
+    """
+    Imagen recortada de un momento del tiro: which = 'peak' (codo mas abierto), 'set' o 'release'.
+    preloaded = (imgs, (w, h)) de una sola lectura del video (grab_frames) para no releerlo por cada tiro.
+    """
     frame = f[f"{which}_frame"]
-    imgs, (w, h) = grab_frames(path, [frame])
-    if not imgs:
+    imgs, (w, h) = preloaded if preloaded is not None else grab_frames(path, [frame])
+    if frame not in imgs:
         return None
     bbox = person_bbox(sm, w, h, f["start_frame"], max(f["set_frame"], f["release_frame"]) + 5)
     if bbox is None:
@@ -262,6 +282,20 @@ def find_labeled(root: Path):
     return found
 
 
+def loo_rule_accuracy(df: pd.DataFrame, y: np.ndarray, feature: str) -> float:
+    """Aprende el umbral SIN un video y lo predice; se repite para cada video."""
+    vals, ok = df[feature].values.astype(float), 0
+    for i in range(len(df)):
+        keep = np.arange(len(df)) != i
+        g, b = vals[keep & (y == "bueno")], vals[keep & (y == "malo")]
+        if len(g) == 0 or len(b) == 0:
+            continue
+        t, d, _ = E.best_threshold(g, b)
+        pred = "bueno" if ((vals[i] > t) if d == ">" else (vals[i] < t)) else "malo"
+        ok += int(pred == y[i])
+    return ok / len(df)
+
+
 def analyze_labeled(df: pd.DataFrame):
     """Texto del reporte + regla aprendida. df: columnas video,label + FEATS."""
     y = np.where(df["label"] == "bueno", "bueno", "malo")
@@ -282,38 +316,64 @@ def analyze_labeled(df: pd.DataFrame):
     table = table.sort_values(["AUC", "efecto"], ascending=False).drop(columns="efecto")
     lines.append("### Que metricas separan bueno de malo\n")
     lines.append("AUC: 0.5 = azar, 1.0 = separa perfecto. Unidades: flare y elbow_vs_wrist en anchos de hombro; "
-                 "tilt y abduction en grados.\n")
+                 "abduction en grados.\n")
     lines.append(table.head(8).round(2).to_markdown(index=False) + "\n")
 
-    # La regla solo puede usar metricas del levantamiento completo (*_lift_*): no dependen de acertar el set point,
-    # asi que tambien valen para quien tira en un solo movimiento, sin pausa.
-    lift = table[table["metrica"].str.contains("_lift_")]
-    head = lift[lift["metrica"] == HEADLINE]
-    # se prefiere la metrica principal (codo hacia afuera) si separa bien: es la mas facil de explicar
-    best = HEADLINE if (len(head) and head.iloc[0]["AUC"] >= 0.9) else lift.iloc[0]["metrica"]
+    # La regla solo puede usar ventanas que no dependen de acertar el set point (*_lift_*, *_prep_*): asi tambien vale
+    # para quien tira en un solo movimiento, sin pausa.
+    cands = table[table["metrica"].apply(lambda m: any(k in m for k in RULE_FAMILIES))]
+    best = cands.iloc[0]["metrica"]
     t, direction, acc = E.best_threshold(good[best].values, bad[best].values)
-    rule = {"feature": best, "t": t, "direction": direction}
-    lines.append("### Regla candidata (una sola metrica)\n")
-    lines.append(f"- `{best}` {direction} {t:.2f} = tiro bueno (acierta {acc * 100:.0f}% de {len(df)} videos)\n")
+    sd_pool = float(np.sqrt((good[best].var(ddof=1) + bad[best].var(ddof=1)) / 2))
+    rule = {"version": RULE_VERSION, "feature": best, "t": float(t), "direction": direction,
+            "band": float(max(0.5 * sd_pool, 1e-6)),
+            "good_mean": float(good[best].mean()), "good_sd": float(good[best].std()),
+            "bad_mean": float(bad[best].mean()), "bad_sd": float(bad[best].std()),
+            "n_good": int(len(good)), "n_bad": int(len(bad))}
+    loo = loo_rule_accuracy(df, y, best)
+    lines.append("### Regla (una sola metrica)\n")
+    lines.append(f"- `{best}` {direction} {t:.2f} = tiro bueno. Con todos los videos acierta {acc * 100:.0f}%.")
+    lines.append(f"- **Leave-one-out** (el umbral se aprende sin el video que se evalua): **{loo * 100:.0f}%** "
+                 f"(decir siempre 'malo': {100 * (y == 'malo').mean():.0f}%).")
+    lines.append(f"- Zona dudosa: ±{rule['band']:.2f} alrededor del umbral.\n")
     from math import comb
     p_perfect = 2 / comb(len(good) + len(bad), len(good))
     lines.append(f"_Ojo: con {len(good)} vs {len(bad)} videos, una metrica que no sirve de nada saca AUC 1.0 el "
                  f"{p_perfect:.1%} de las veces, y aqui se miraron {len(FEATS)}. Por eso lo que cuenta es que "
                  f"varias formas distintas de medir lo mismo coincidan, y que se repita con otras personas._\n")
-
-    X = df[FEATS].values.astype(float)
-    preds = E.loo_predictions(X, y)
-    acc_loo = float((preds == y).mean())
-    base = float((y == "malo").mean())
-    cm = pd.crosstab(pd.Series(y, name="real"), pd.Series(preds, name="predicho"))
-    lines.append("### Clasificador (leave-one-out)\n")
-    lines.append(f"- Acierto bueno vs malo: **{acc_loo * 100:.0f}%**  (decir siempre 'malo': {base * 100:.0f}%)\n")
-    lines.append(cm.to_markdown() + "\n")
-    wrong = df[preds != y]
-    if len(wrong):
-        lines.append("Mal clasificados: " + ", ".join(f"{v} ({l}→{p})" for v, l, p in
-                                                     zip(wrong["video"], wrong["label"], preds[preds != y])) + "\n")
+    if "has_pause" in df.columns:
+        pg, pb = int(good["has_pause"].sum()), int(bad["has_pause"].sum())
+        rule["pause_good"], rule["pause_bad"] = pg / len(good), pb / len(bad)
+        lines.append(f"Videos CON pausa en el set point: buenos {pg} de {len(good)}, malos {pb} de {len(bad)}. "
+                     "_Si los malos tiran mas de corrido, parte de lo que se separa puede ser el ritmo y no el codo; "
+                     "por eso la regla usa solo geometria del codo._\n")
     return "\n".join(lines), rule
+
+
+def verdict(value, rule) -> str:
+    """'bueno' / 'dudoso' / 'malo' segun la regla. Dudoso = a menos de media desviacion del umbral."""
+    if value is None or not np.isfinite(value):
+        return "?"
+    if abs(value - rule["t"]) < rule.get("band", 0.0):
+        return "dudoso"
+    good_side = (value > rule["t"]) if rule["direction"] == ">" else (value < rule["t"])
+    return "bueno" if good_side else "malo"
+
+
+def save_rule(out_dir: Path, rule: dict, args) -> None:
+    data = {**rule, "arm": args.arm, "frac": args.frac, "prep_level": args.prep_level}
+    (out_dir / "rule.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+
+def load_rule(out_dir: Path):
+    p = out_dir / "rule.json"
+    if not p.exists():
+        return None
+    try:
+        d = json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    return d if d.get("version") == RULE_VERSION else None
 
 
 def apply_rule(value, rule):
@@ -404,6 +464,71 @@ def fps_of(df: pd.DataFrame) -> float:
     return 1.0 / np.median(dt[dt > 0]) if (dt > 0).any() else 30.0
 
 
+# --------------------------------------------------------------------------
+# Analisis de un clip completo (lo usa la app)
+# --------------------------------------------------------------------------
+def upload_paths(data: bytes, suffix: str, root: Path):
+    """Rutas (video, cache) para un video subido; el nombre sale del contenido, asi el mismo video no se reprocesa."""
+    h = hashlib.md5(data).hexdigest()[:16]
+    return root / "uploads" / f"{h}{suffix.lower()}", root / "cache" / f"{h}.csv", h
+
+
+def analyze_clip(video_path: Path, cache_path: Path, arm: str, rule=None, complexity: int = 1, frac: float = 0.90,
+                 prep_level: float = 0.60, progress=None, make_tiles: bool = True) -> dict:
+    """
+    Detecta los tiros de un video (corto o largo) y mide el codo en cada uno.
+    Devuelve {fps, n_frames, detection_rate, note, shots:[{n, value, verdict, has_pause, pause_s, set_s, release_s,
+    flare_lift_max, flare_lift_mean, features, tile}]}. `tile` es una imagen BGR (o None).
+    """
+    df = E.extract_angles(video_path, cache_path, complexity, False, progress)
+    det, sm = E._smoothed(df)
+    fps = fps_of(df)
+    info = {"fps": fps, "n_frames": len(df), "duration_s": len(df) / fps, "note": "", "shots": [],
+            "detection_rate": 100 * len(det) / max(len(df), 1)}
+    if len(det) < E.MIN_DETECTED_FRAMES:
+        info["note"] = "Casi no se detecto a la persona en el video: revisa que se vea el cuerpo completo y bien iluminado."
+        return info
+    shots = find_shots(sm, arm, fps, frac, use_elbow=False)
+    if not shots:   # clip ya recortado a un tiro: se analiza completo
+        f0 = elbow_features(sm, arm, frac, prep_level)
+        if f0 is None:
+            info["note"] = ("No pude ubicar un tiro en este video. Revisa que se vea al jugador de frente, con el "
+                            "cuerpo completo, y que el video incluya cuando sube el balon.")
+            return info
+        shots = [{"start": int(sm.index.min()), "end": int(sm.index.max()), "win": sm}]
+        info["note"] = "No detecte un tiro claro dentro del video, asi que analice el clip completo como un solo tiro."
+    feat = rule["feature"] if rule else HEADLINE
+    measured = [(n, elbow_features(sh["win"], arm, frac, prep_level)) for n, sh in enumerate(shots, 1)]
+    measured = [(n, f) for n, f in measured if f is not None]
+    # una sola lectura del video para todas las imagenes (leerlo por cada tiro seria muy lento)
+    pre = grab_frames(video_path, [f["peak_frame"] for _, f in measured]) if (make_tiles and measured) else None
+    for n, f in measured:
+        value = f[feat]
+        info["shots"].append({
+            "n": n, "value": float(value), "verdict": verdict(value, rule) if rule else "?",
+            "has_pause": bool(f["has_pause"]), "pause_s": f["gap_frames"] / fps,
+            "set_s": f["set_frame"] / fps, "release_s": f["release_frame"] / fps,
+            "flare_lift_max": f["flare_lift_max"], "flare_lift_mean": f["flare_lift_mean"],
+            "features": f,
+            "tile": frame_tile(video_path, sm, f, "peak", f"tiro {n}", arm, preloaded=pre) if pre else None})
+    if not info["shots"]:
+        info["note"] = (info["note"] + " " if info["note"] else "") + "Detecte movimiento pero no pude medir el codo."
+    return info
+
+
+def summarize_shots(shots: list) -> dict:
+    """Resumen de una sesion: cuantos tiros, apertura promedio, cuantos buenos, cuantos con pausa."""
+    if not shots:
+        return {}
+    vals = np.array([s["value"] for s in shots], float)
+    vs = [s["verdict"] for s in shots]
+    return {"n": len(shots), "mean": float(vals.mean()),
+            "sd": float(vals.std(ddof=1)) if len(vals) > 1 else float("nan"),
+            "n_bueno": vs.count("bueno"), "n_dudoso": vs.count("dudoso"), "n_malo": vs.count("malo"),
+            "pct_bueno": 100 * vs.count("bueno") / len(vs),
+            "pct_pausa": 100 * float(np.mean([s["has_pause"] for s in shots]))}
+
+
 def main():
     ap = argparse.ArgumentParser(description="Mide el codo abierto antes del tiro (vista de frente)")
     ap.add_argument("--arm", required=True, choices=["left", "right"], help="Brazo con el que tira la persona")
@@ -427,6 +552,8 @@ def main():
     ap.add_argument("--view", default="frente", choices=["frente", "lado"],
                     help="Desde donde se grabo (solo afecta a --find-shots)")
     ap.add_argument("--frac", type=float, default=0.90, help="Fraccion del recorrido de la muneca que marca el release")
+    ap.add_argument("--prep-level", type=float, default=0.60,
+                    help="Fraccion del recorrido de la muneca donde termina la 'preparacion' (ventana *_prep_*)")
     ap.add_argument("--complexity", type=int, default=1, choices=[0, 1, 2])
     ap.add_argument("--force", action="store_true", help="Reprocesar aunque exista cache")
     ap.add_argument("--output", default="elbow_out")
@@ -476,6 +603,14 @@ def main():
             report.append("_[!] No se pudieron generar imagenes: ¿se pueden abrir los videos? (el analisis salio de la "
                           "cache)._\n")
 
+        if rule:
+            save_rule(out_dir, rule, args)
+    if rule is None and any([args.test, args.compare, args.find_shots, args.check]):
+        rule = load_rule(out_dir)
+        if rule:
+            report.append(f"_Usando la regla guardada de tu ultima corrida de --videos: `{rule['feature']}` "
+                          f"{rule['direction']} {rule['t']:.2f} = bueno._\n")
+
     # ---- 2. otras personas
     if args.test:
         test_rows, items = [], []
@@ -490,30 +625,27 @@ def main():
         report.append("## Otras personas (sin etiquetas)\n")
         if test_rows:
             t = pd.DataFrame(test_rows)
-            have_train = train is not None and (train["label"] == "bueno").any() and (train["label"] != "bueno").any()
-            if have_train:
-                ytr = np.where(train["label"] == "bueno", "bueno", "malo")
-                t["clasificador"] = E.fit_predict(train[FEATS].values.astype(float), ytr, t[FEATS].values.astype(float))
-                if rule:
-                    t["regla"] = [apply_rule(v, rule) for v in t[rule["feature"]]]
+            if rule is None:
+                report.append("_[!] No hay regla con que comparar: corre primero --videos con tus videos etiquetados "
+                              "(o juntos: --videos ... --test ...). Solo se muestran las metricas._\n")
             else:
-                report.append("_[!] Corriste --test sin --videos: no hay videos etiquetados con que comparar, asi que "
-                              "solo se muestran las metricas. Usa los dos juntos._\n")
+                t["veredicto"] = [verdict(v, rule) for v in t[rule["feature"]]]
             t.to_csv(out_dir / "sujetos_prueba.csv", index=False)
-            show = [c for c in ["video", HEADLINE, "flare_lift_mean", "abduction_lift_mean", "flare_set",
-                                "clasificador", "regla"] if c in t.columns]
-            if have_train:
-                g, bd = train[train["label"] == "bueno"], train[train["label"] != "bueno"]
-                report.append("Referencia (tus videos): " + "; ".join(
-                    f"{c}: buenos {g[c].mean():.2f}±{g[c].std():.2f}, malos {bd[c].mean():.2f}±{bd[c].std():.2f}"
-                    for c in show[1:4]) + "\n")
+            main_feat = rule["feature"] if rule else HEADLINE
+            show = [c for c in dict.fromkeys(["video", main_feat, "flare_lift_mean", "abduction_lift_mean",
+                                              "has_pause", "veredicto"]) if c in t.columns]
+            if rule:
+                lt = "<" if rule["direction"] == "<" else ">"
+                report.append(f"Regla: `{main_feat}` {lt} {rule['t']:.2f} = bueno (dudoso: ±{rule['band']:.2f}). "
+                              f"Referencia de tus videos: buenos {rule['good_mean']:.2f}±{rule['good_sd']:.2f}, "
+                              f"malos {rule['bad_mean']:.2f}±{rule['bad_sd']:.2f}.\n")
             report.append(t[show].round(2).to_markdown(index=False) + "\n")
             cols = {}
-            preds = list(t["clasificador"]) if "clasificador" in t.columns else ["sin comparar"] * len(t)
+            preds = list(t["veredicto"]) if "veredicto" in t.columns else ["sin regla"] * len(t)
             for (p, sm, f), pred in zip(items, preds):
                 tl = frame_tile(p, sm, f, "peak", f"{p.stem[:34]} f{f['peak_frame']}", args.arm)
                 if tl is not None:
-                    cols.setdefault(f"predicho: {pred}", []).append(tl)
+                    cols.setdefault(f"veredicto: {pred}", []).append(tl)
             sp = sheet(cols, out_dir / "hoja_sujetos_prueba.jpg")
             if sp:
                 report.append(f"Imagen (momento de mayor apertura del codo): `{sp.name}`\n")
@@ -570,14 +702,15 @@ def main():
         lines = ["## Comparacion antes / despues\n",
                  f"Tiros analizados: antes {len(sides[0])}, despues {len(sides[1])}\n",
                  "| metrica | antes | despues | cambio |", "|:--|--:|--:|--:|"]
-        for m in (HEADLINE, "flare_lift_mean", "abduction_lift_mean", "elbow_vs_wrist_lift_max", "flare_set"):
+        main_feat = rule["feature"] if rule else HEADLINE
+        for m in dict.fromkeys([main_feat, HEADLINE, "flare_lift_mean", "abduction_lift_mean", "elbow_vs_wrist_lift_max"]):
             (ma, sa), (mb, sb) = stat(sides[0], m), stat(sides[1], m)
             sd = lambda x: "" if np.isnan(x) else f"±{x:.2f}"
             lines.append(f"| {m} | {ma:.2f}{sd(sa)} | {mb:.2f}{sd(sb)} | {mb - ma:+.2f} |")
-        d = stat(sides[1], HEADLINE)[0] - stat(sides[0], HEADLINE)[0]
-        verdict = ("MEJORO: el codo queda mas cerca del cuerpo" if d <= -args.min_change else
-                   "EMPEORO: el codo se abre mas" if d >= args.min_change else "SIN CAMBIO claro")
-        lines.append(f"\n**{verdict}** (cambio del pico de flare: {d:+.2f} anchos de hombro; umbral provisional "
+        d = stat(sides[1], main_feat)[0] - stat(sides[0], main_feat)[0]
+        cambio_txt = ("MEJORO: el codo queda mas cerca del cuerpo" if d <= -args.min_change else
+                      "EMPEORO: el codo se abre mas" if d >= args.min_change else "SIN CAMBIO claro")
+        lines.append(f"\n**{cambio_txt}** (cambio del pico de flare: {d:+.2f} anchos de hombro; umbral provisional "
                      f"{args.min_change})\n")
         if len(sides[0]) == 1 and len(sides[1]) == 1:
             lines.append("_Con un solo tiro por lado el resultado es ruidoso; lo normal es que dos tiros de la misma "
@@ -608,7 +741,7 @@ def main():
         if shots:
             rows, tiles, flares = [], [], []
             for n, sh in enumerate(shots, 1):
-                f = elbow_features(sh["win"], args.arm, args.frac)
+                f = elbow_features(sh["win"], args.arm, args.frac, args.prep_level)
                 r = {"tiro": n, "inicio_s": sh["start"] / fps, "set_s": sh["set"] / fps,
                      "release_s": sh["release"] / fps}
                 if f:

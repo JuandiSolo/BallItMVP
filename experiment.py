@@ -90,7 +90,7 @@ def find_videos(root: Path):
 # --------------------------------------------------------------------------
 # 2. Extraccion de angulos por video (con cache)
 # --------------------------------------------------------------------------
-def extract_angles(video_path: Path, cache_path: Path, complexity: int, force: bool):
+def extract_angles(video_path: Path, cache_path: Path, complexity: int, force: bool, progress=None):
     if cache_path.exists() and not force:
         cached = pd.read_csv(cache_path)
         if "right_wrist_y" in cached.columns:
@@ -103,6 +103,7 @@ def extract_angles(video_path: Path, cache_path: Path, complexity: int, force: b
     w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) or 0
 
     extractor = PoseExtractor(model_complexity=complexity)
     rows, idx = [], 0
@@ -120,6 +121,8 @@ def extract_angles(video_path: Path, cache_path: Path, complexity: int, force: b
             row["detected"] = True
         rows.append(row)
         idx += 1
+        if progress is not None and total and idx % 5 == 0:
+            progress(min(idx / total, 1.0))   # opcional: para barras de progreso
     cap.release()
     extractor.close()
 

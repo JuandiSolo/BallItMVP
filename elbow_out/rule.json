@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "feature": "abduction_prep_mean",
+  "t": 26.299999999999997,
+  "direction": "<",
+  "band": 4.08237157214544,
+  "good_mean": 16.057142857142857,
+  "good_sd": 4.277551750662035,
+  "bad_mean": 44.597142857142856,
+  "bad_sd": 10.725139264592233,
+  "n_good": 5,
+  "n_bad": 5,
+  "pause_good": 1.0,
+  "pause_bad": 0.4,
+  "arm": "right",
+  "frac": 0.9,
+  "prep_level": 0.6
+}
