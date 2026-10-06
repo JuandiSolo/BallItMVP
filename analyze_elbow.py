@@ -46,6 +46,7 @@ WINDOWS = ("set", "pre_max", "pre_mean", "lift_max", "lift_mean", "prep_max", "p
 FEATS = [f"{m}_{k}" for m in FRONT_METRICS for k in WINDOWS]
 HEADLINE = "flare_lift_max"   # pico de apertura del codo durante todo el levantamiento (metrica por defecto)
 RULE_VERSION = 3
+DETECTOR_VERSION = 2  # invalida resultados de Streamlit al cambiar la deteccion
 RULE_FAMILIES = ("_lift_", "_prep_")   # ventanas que NO dependen de que el tiro tenga pausa
 DEFAULT_RULE = {"version": RULE_VERSION, "feature": HEADLINE, "t": 0.38, "direction": "<", "band": 0.04,
                 "good_mean": 0.32, "good_sd": 0.06, "bad_mean": 0.48, "bad_sd": 0.10, "n_good": 5, "n_bad": 5,
@@ -211,6 +212,17 @@ def frame_tile(path, sm, f, which, caption, arm, preloaded=None):
     return make_tile(imgs[frame], sm, frame, arm, bbox, caption, note=note)
 
 
+def raised_tile(path, sm, f, frame, caption, arm, preloaded):
+    """Muestra la postura con el brazo elevado, sin atribuirle el pico de flare."""
+    imgs, (w, h) = preloaded
+    if frame not in imgs:
+        return None
+    bbox = person_bbox(sm, w, h, f["start_frame"], f["release_frame"] + 5)
+    if bbox is None:
+        return None
+    return make_tile(imgs[frame], sm, frame, arm, bbox, caption, note="brazo elevado")
+
+
 def list_videos(folder: Path):
     """Videos de una carpeta; si no existe o esta vacia, avisa claro y termina."""
     if not folder.is_dir():
@@ -351,13 +363,26 @@ def analyze_labeled(df: pd.DataFrame):
 
 
 def verdict(value, rule) -> str:
-    """'bueno' / 'dudoso' / 'malo' segun la regla. Dudoso = a menos de media desviacion del umbral."""
+    """El color del veredicto coincide con el puntaje mostrado al usuario."""
     if value is None or not np.isfinite(value):
         return "?"
-    if abs(value - rule["t"]) < rule.get("band", 0.0):
-        return "dudoso"
-    good_side = (value > rule["t"]) if rule["direction"] == ">" else (value < rule["t"])
-    return "bueno" if good_side else "malo"
+    points = score(value, rule)
+    return "bueno" if points >= 80 else "dudoso" if points >= 60 else "malo"
+
+
+def score(value, rule):
+    """Puntaje 0–100; anclas 100/80/60/0 en ambas direcciones."""
+    t, band = float(rule["t"]), max(float(rule["band"]), 1e-9)
+    margin = .05 * abs(t)
+    if rule["direction"] == "<":
+        g = min(rule["good_mean"] - rule["good_sd"], t - band - margin)
+        b = max(rule["bad_mean"] + rule["bad_sd"], t + band + margin)
+        xs, ys = [g, t - band, t + band, b], [100, 80, 60, 0]
+    else:
+        g = max(rule["good_mean"] + rule["good_sd"], t + band + margin)
+        b = min(rule["bad_mean"] - rule["bad_sd"], t - band - margin)
+        xs, ys = [b, t - band, t + band, g], [0, 60, 80, 100]
+    return int(round(float(np.interp(value, xs, ys))))
 
 
 def save_rule(out_dir: Path, rule: dict, args) -> None:
@@ -392,6 +417,16 @@ def find_shots(sm: pd.DataFrame, arm: str, fps: float, frac: float, use_elbow: b
     h = E.wrist_height(sm, arm)
     if h is None:
         return []
+    # La subida de la muneca sola puede ser un bote o un amague. Exigimos que
+    # el codo del brazo elegido tambien llegue cerca de la linea del hombro.
+    need = [f"{arm}_{joint}_{axis}" for joint in ("shoulder", "elbow", "hip") for axis in ("x", "y")]
+    if any(c not in sm.columns for c in need):
+        return []
+    torso = np.hypot(sm[f"{arm}_shoulder_x"] - sm[f"{arm}_hip_x"],
+                     sm[f"{arm}_shoulder_y"] - sm[f"{arm}_hip_y"]).median()
+    if not np.isfinite(torso) or torso <= 0:
+        return []
+    elbow_height = (sm[f"{arm}_shoulder_y"] - sm[f"{arm}_elbow_y"]) / torso
     fr = np.arange(int(h.index.min()), int(h.index.max()) + 1)
     vals = h.reindex(fr).interpolate(limit=int(fps * 0.5), limit_direction="both").values
     W, back = int(round(0.7 * fps)), int(round(2 * fps))
@@ -414,6 +449,11 @@ def find_shots(sm: pd.DataFrame, arm: str, fps: float, frac: float, use_elbow: b
 
     shots = []
     for i in merged:
+        high = h[(h.index >= fr[max(0, i - int(0.35 * fps))]) &
+                 (h.index <= fr[min(len(fr) - 1, i + int(0.15 * fps))])]
+        raised = high[(high >= min_height) & (elbow_height.reindex(high.index) >= -0.4)]
+        if len(raised) < 2:
+            continue
         lo = max(0, i - back)
         trough = lo + int(np.nanargmin(vals[lo:i + 1]))
         a = int(fr[max(0, trough - int(0.3 * fps))])
@@ -489,28 +529,35 @@ def analyze_clip(video_path: Path, cache_path: Path, arm: str, rule=None, comple
         info["note"] = "Casi no se detecto a la persona en el video: revisa que se vea el cuerpo completo y bien iluminado."
         return info
     shots = find_shots(sm, arm, fps, frac, use_elbow=False)
-    if not shots:   # clip ya recortado a un tiro: se analiza completo
-        f0 = elbow_features(sm, arm, frac, prep_level)
-        if f0 is None:
-            info["note"] = ("No pude ubicar un tiro en este video. Revisa que se vea al jugador de frente, con el "
-                            "cuerpo completo, y que el video incluya cuando sube el balon.")
-            return info
-        shots = [{"start": int(sm.index.min()), "end": int(sm.index.max()), "win": sm}]
-        info["note"] = "No detecte un tiro claro dentro del video, asi que analice el clip completo como un solo tiro."
+    if not shots:
+        info["note"] = ("No pude confirmar un tiro: el brazo elegido debe subir con la muneca por encima del "
+                        "hombro y el codo cerca de su altura. Revisa la mano seleccionada, el encuadre y que "
+                        "se vea la subida completa. No se califico este video.")
+        return info
     feat = rule["feature"] if rule else HEADLINE
     measured = [(n, elbow_features(sh["win"], arm, frac, prep_level)) for n, sh in enumerate(shots, 1)]
     measured = [(n, f) for n, f in measured if f is not None]
     # una sola lectura del video para todas las imagenes (leerlo por cada tiro seria muy lento)
-    pre = grab_frames(video_path, [f["peak_frame"] for _, f in measured]) if (make_tiles and measured) else None
+    # La foto que ve el usuario debe mostrar el brazo arriba. El pico de flare
+    # puede suceder muy temprano, con el balon aun a la altura de la cintura.
+    display_frames = {}
+    h = E.wrist_height(sm, arm)
+    for n, f in measured:
+        raised = h[(h.index >= f["start_frame"]) & (h.index <= f["release_frame"]) & (h >= 0.5)]
+        if len(raised):
+            display_frames[n] = int(raised.index[np.argmin(abs(raised.index.to_numpy() - f["set_frame"]))])
+    pre = grab_frames(video_path, list(display_frames.values())) if (make_tiles and display_frames) else None
     for n, f in measured:
         value = f[feat]
         info["shots"].append({
-            "n": n, "value": float(value), "verdict": verdict(value, rule) if rule else "?",
+            "n": n, "value": float(value), "score": score(value, rule) if rule else None,
+            "verdict": verdict(value, rule) if rule else "?",
             "has_pause": bool(f["has_pause"]), "pause_s": f["gap_frames"] / fps,
             "set_s": f["set_frame"] / fps, "release_s": f["release_frame"] / fps,
             "flare_lift_max": f["flare_lift_max"], "flare_lift_mean": f["flare_lift_mean"],
             "features": f,
-            "tile": frame_tile(video_path, sm, f, "peak", f"tiro {n}", arm, preloaded=pre) if pre else None})
+            "tile": raised_tile(video_path, sm, f, display_frames[n], f"tiro {n}", arm, pre)
+                    if pre and n in display_frames else None})
     if not info["shots"]:
         info["note"] = (info["note"] + " " if info["note"] else "") + "Detecte movimiento pero no pude medir el codo."
     return info
@@ -523,6 +570,7 @@ def summarize_shots(shots: list) -> dict:
     vals = np.array([s["value"] for s in shots], float)
     vs = [s["verdict"] for s in shots]
     return {"n": len(shots), "mean": float(vals.mean()),
+            "score": int(round(float(np.mean([s["score"] for s in shots])))) if all(s.get("score") is not None for s in shots) else None,
             "sd": float(vals.std(ddof=1)) if len(vals) > 1 else float("nan"),
             "n_bueno": vs.count("bueno"), "n_dudoso": vs.count("dudoso"), "n_malo": vs.count("malo"),
             "pct_bueno": 100 * vs.count("bueno") / len(vs),

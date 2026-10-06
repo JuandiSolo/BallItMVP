@@ -21,6 +21,7 @@ import pandas as pd
 import streamlit as st
 
 import analyze_elbow as A
+import services
 
 ROOT = Path(__file__).parent
 APP_CACHE = ROOT / "app_cache"
@@ -115,7 +116,7 @@ with st.sidebar:
 def run_upload(up):
     data = up.getvalue()
     video, cache, h = A.upload_paths(data, Path(up.name).suffix or ".mp4", APP_CACHE)
-    key = (h, arm, tuple(sorted((k, repr(v)) for k, v in rule.items())))
+    key = (h, arm, A.DETECTOR_VERSION, tuple(sorted((k, repr(v)) for k, v in rule.items())))
     if key in st.session_state.results:
         return st.session_state.results[key], key
     video.parent.mkdir(parents=True, exist_ok=True)
@@ -141,18 +142,7 @@ def to_rgb(tile):
 
 
 def advice(shot):
-    out = []
-    if shot["verdict"] == "malo":
-        out.append(f"**Revisa el codo:** {feature_label}: {shot['value']:.2f}{symbol}. La medición queda del lado "
-                   "de los ejemplos etiquetados con codo abierto. Revisa su alineación debajo del balón.")
-    elif shot["verdict"] == "dudoso":
-        out.append("**Cerca del límite:** el codo está algo abierto. Vigila que quede debajo del balón.")
-    elif shot["verdict"] == "bueno":
-        out.append("**Buen codo:** queda alineado con el hombro antes del tiro.")
-    if not shot["has_pause"]:
-        out.append("**Haz una pausa:** tiraste de corrido. Detente un instante con el balón arriba (set point) antes de "
-                   "extender el brazo; ayuda a acomodar el codo.")
-    return out
+    return services.shot_advice(shot, feature_label, symbol)
 
 
 def show_quality(info):
@@ -169,6 +159,7 @@ def show_shots(info):
         with c1:
             if s["tile"] is not None:
                 st.image(to_rgb(s["tile"]), width=280)
+                st.caption("Brazo elevado. La medición resume la preparación anterior al lanzamiento.")
             else:
                 st.caption("(no se pudo dibujar la imagen)")
         with c2:
@@ -265,10 +256,11 @@ with tab2:
             else:
                 sa, sb = ia["summary"], ib["summary"]
                 d = sb["mean"] - sa["mean"]
-                if (d if good_is_lower else -d) <= -min_change:
+                direction = services.change_direction(sa['mean'], sb['mean'], good_is_lower, min_change)
+                if direction == 'mejoro':
                     st.success(f"✅ **Cambio hacia el lado bueno de la regla.** La medición pasó de {sa['mean']:.2f}{symbol} a {sb['mean']:.2f}{symbol} "
                                f"({d:+.2f}{symbol}).")
-                elif (d if good_is_lower else -d) >= min_change:
+                elif direction == 'empeoro':
                     st.error(f"⚠️ **Cambio hacia el lado malo de la regla.** La medición pasó de {sa['mean']:.2f}{symbol} a {sb['mean']:.2f}{symbol} "
                              f"({d:+.2f}{symbol}). Revisa la alineación del codo.")
                 else:

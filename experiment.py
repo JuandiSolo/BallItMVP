@@ -91,6 +91,15 @@ def find_videos(root: Path):
 # 2. Extraccion de angulos por video (con cache)
 # --------------------------------------------------------------------------
 def extract_angles(video_path: Path, cache_path: Path, complexity: int, force: bool, progress=None):
+    meta_path = cache_path.with_suffix(".meta.json")
+    if not meta_path.exists() and video_path.exists():
+        cap_meta = cv2.VideoCapture(str(video_path))
+        if cap_meta.isOpened():
+            import json
+            meta_path.parent.mkdir(parents=True, exist_ok=True)
+            meta_path.write_text(json.dumps({"width": int(cap_meta.get(cv2.CAP_PROP_FRAME_WIDTH)),
+                                             "height": int(cap_meta.get(cv2.CAP_PROP_FRAME_HEIGHT))}), encoding="utf-8")
+        cap_meta.release()
     if cache_path.exists() and not force:
         cached = pd.read_csv(cache_path)
         if "right_wrist_y" in cached.columns:

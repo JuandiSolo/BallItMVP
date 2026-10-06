@@ -4,6 +4,65 @@
 
 Por ahora es un **prototipo local**. Esta guía explica cómo instalarlo, verlo y probarlo con los videos incluidos.
 
+## API para el front web
+
+La API usa el mismo análisis del prototipo. Requiere **Python 3.10–3.12**, las dependencias de `requirements.txt` y `ffmpeg` con codificador `libx264` instalado en el servidor (`ffmpeg -encoders | grep libx264`). Generen primero la regla con el comando de la sección 3; `elbow_out/rule.json` queda en el proyecto. Si falta, la API usa una regla de ejemplo en otra escala y lo registra como advertencia.
+
+En macOS, `python3` puede apuntar al Python 3.9 de Xcode. Compruébenlo con `python3 --version`. Si es 3.9 y tienen Homebrew, instalen Python 3.11 y creen un entorno nuevo desde la carpeta del proyecto:
+
+```bash
+brew install python@3.11
+python3.11 -m venv .venv311
+source .venv311/bin/activate
+python --version  # debe decir Python 3.11.x
+python -m pip install -r requirements.txt
+python -m uvicorn api:app --host 127.0.0.1 --port 8000
+```
+
+Al volver otro día, ejecuten `source .venv311/bin/activate` antes de iniciar la API. Usar `python -m uvicorn` con el entorno activado garantiza que Uvicorn use ese mismo Python.
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 analyze_elbow.py --videos videos/frente/ --arm right
+python3 -m uvicorn api:app --host 127.0.0.1 --port 8000
+```
+
+Documentación interactiva: `http://127.0.0.1:8000/docs`. Copia `example_result.json` para desarrollar las pantallas del front sin esperar a que termine un análisis.
+
+El front debe generar y conservar un **UUID** por instalación y enviarlo en `X-User-Id` en cada petición. Ejemplo de subida:
+
+```bash
+curl -X POST http://127.0.0.1:8000/analyze \
+  -H 'X-User-Id: 550e8400-e29b-41d4-a716-446655440000' \
+  -F 'video=@videos/frente/bueno/42242067-8455-4e73-8727-fce7f0ba6168.mov' \
+  -F 'arm=right' -F 'camera=frente' -F 'focus=completo'
+```
+
+La respuesta `202` trae `analysis_id`. Consulta `GET /analyze/{analysis_id}` hasta recibir `status: done` y lee `result`; si llega `error`, muestra `error.message`. `clip_url` puede ser `null` inicialmente: vuelve a consultar mientras se recodifica el clip. `GET /history`, `GET /history/{id}` y `POST /compare` usan el mismo header. El JSON trae puntos del cuerpo normalizados de 0 a 1, puntaje y URLs para imágenes y clips.
+
+Por defecto se analiza **todo el video, desde el segundo 0 hasta el final**, buscando los tiros a lo largo de la grabación. Deja vacíos `trim_start_s` y `trim_end_s`; solo complétalos si quieres recortar. No hay límite de un minuto. El límite de tamaño sigue siendo 200 MiB y se puede ampliar con `BALLIT_MAX_BYTES`.
+
+Configuración opcional del servidor:
+
+| Variable | Uso |
+|---|---|
+| `BALLIT_DATA_DIR` | Carpeta raíz de videos, resultados y caché; por defecto, este proyecto |
+| `BALLIT_CORS_ORIGINS` | Orígenes permitidos separados por coma; por defecto `http://localhost:3000,http://localhost:5173` |
+| `BALLIT_MAX_BYTES` | Tamaño máximo; por defecto 200 MiB |
+| `BALLIT_MAX_SECONDS` | Duración máxima opcional del segmento analizado; por defecto `0` (sin límite) |
+| `GROQ_API_KEY` | Habilita el coach de IA; si falta o falla, se dan consejos locales |
+| `GROQ_MODEL` | Modelo de Groq; por defecto `openai/gpt-oss-20b` |
+
+La API procesa **un video a la vez por proceso**. Ejecuta Uvicorn con un solo worker para conservar la cola y sus estados en memoria. Los resultados completos quedan en `resultados/{usuario}/`; los videos y clips en `videos_prueba/{usuario}/`. Un UUID sin login separa datos del prototipo, pero no es autenticación suficiente para un servicio público.
+
+Para borrar videos antiguos sin borrar el historial, programa una ejecución mensual de:
+
+```bash
+python3 limpiar_videos.py --days 30
+```
+
+También admite `--max-gb` para limitar el espacio. Los directorios de datos nuevos están en `.gitignore`. Los videos que **ya estén versionados en Git** no desaparecen de su historial por añadir `.gitignore`; revisen y retiren esos archivos por separado antes de publicar el repositorio.
+
 ## ¿Qué pueden probar?
 
 - **Analizar un video:** detectar movimientos candidatos a tiro, medir el codo y ver una imagen con el brazo marcado en verde.
@@ -28,9 +87,9 @@ Si ya tienen el proyecto descargado, abran una terminal dentro de su carpeta. Al
 En macOS o Linux:
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
-python3 -m pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 En Windows, desde PowerShell:
@@ -134,7 +193,7 @@ La regla puede elegir distintas métricas. La app muestra la unidad correspondie
 | `elbow_vs_wrist_*` | Anchos de hombro | Separación lateral del codo respecto a la muñeca |
 | `abduction_*` | Grados | Ángulo 2D formado por cadera, hombro y codo |
 
-La imagen del pico muestra `flare max`, aunque la regla use otra métrica. Por eso el número sobre la imagen y el número principal pueden ser diferentes.
+En la app, la imagen muestra un momento con el brazo elevado. La medición principal resume la preparación anterior; no representa necesariamente el valor del frame de la imagen. Las hojas generadas por `analyze_elbow.py` siguen mostrando el pico de `flare` y el release por separado.
 
 El control **«Cambio mínimo para comparar»** usa la unidad de la regla actual. Es una sensibilidad provisional, no un umbral de mejora deportiva validado.
 
@@ -161,7 +220,7 @@ Los videos se procesan localmente. La app guarda las subidas y las coordenadas e
 python3 -m pip install "streamlit>=1.40,<1.50" "protobuf>=4.25.3,<5"
 ```
 
-**No detecta un tiro o marca el brazo equivocado:** revisen la mano seleccionada, el encuadre y la vista frontal. Si no consigue detectar un tiro claro, puede intentar analizar el clip completo y mostrar un aviso.
+**No detecta un tiro o marca el brazo equivocado:** revisen la mano seleccionada, el encuadre y la vista frontal. Debe verse la subida completa, con muñeca por encima del hombro y codo cerca de su altura. Si no se confirma esa postura, la app avisa y deja el video sin calificar.
 
 **Cambiaron `app.py`:** detengan Streamlit con Ctrl+C y vuelvan a abrirlo.
 
@@ -266,7 +325,7 @@ basketball-pose-mvp/
     ├── analisis_video.mp4      # Video ORIGINAL + esqueleto + ángulos dibujados
     ├── angulos_por_frame.json  # Datos crudos: un registro por cada frame
     ├── angulos_por_frame.csv   # Los mismos datos, en formato tabla (Excel/Sheets)
-    ├── resumen.md               # Tabla resumen: min/máx/rango por articulación
+    ├── resumen.md               # Tabla resumen: min/máx/rango de cada articulación
     └── prompt_para_ia.txt       # Texto listo para copiar y pegar a Claude (o API)
 ```
 
