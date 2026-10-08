@@ -1,2 +1,14 @@
+.git
 .env
 .env.*
+.venv*
+venv
+__pycache__
+*.pyc
+videos/
+videos_prueba/
+resultados/
+cache/
+app_cache/
+output/
+sample_data/
