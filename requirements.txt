@@ -9,3 +9,4 @@ streamlit>=1.40,<1.50
 fastapi>=0.110,<1
 uvicorn>=0.29,<1
 python-multipart>=0.0.9
+python-dotenv>=1.0,<2

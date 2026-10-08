@@ -26,6 +26,11 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
+from dotenv import load_dotenv
+
+# Load the backend's own file, regardless of the directory used to start Uvicorn.
+# Variables already exported in the terminal take precedence.
+load_dotenv(Path(__file__).resolve().parent / '.env', override=False)
 
 import analyze_elbow as A
 import coach
