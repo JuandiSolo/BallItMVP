@@ -4,3 +4,16 @@
 !.env.example
 .venv/
 __pycache__/
+.DS_Store
+demo_sources/
+videos/
+videos_prueba/
+resultados/
+cache/
+app_cache/
+output/
+sample_data/
+experimento/
+elbow_out/*
+!elbow_out/rule.json
+!elbow_out/reporte_codo.md

@@ -24,6 +24,7 @@ import pandas as pd
 from fastapi import Depends, FastAPI, File, Form, Header, HTTPException, UploadFile
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -34,6 +35,7 @@ load_dotenv(Path(__file__).resolve().parent / '.env', override=False)
 
 import analyze_elbow as A
 import coach
+import demos
 import experiment as E
 import media
 import services
@@ -50,6 +52,8 @@ CORS_ORIGINS = [x.strip() for x in os.getenv('BALLIT_CORS_ORIGINS', 'http://loca
 app = FastAPI(title='BallIt API', version='0.1.0')
 app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_credentials=False,
                    allow_methods=['GET', 'POST', 'DELETE'], allow_headers=['X-User-Id', 'Content-Type'])
+app.add_middleware(GZipMiddleware, minimum_size=1024)
+app.include_router(demos.router, prefix='/demos')
 
 
 @app.exception_handler(HTTPException)

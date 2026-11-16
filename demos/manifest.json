@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "demos": [
+    {
+      "slug": "tiro-1",
+      "source": "demo_sources/Perfecto.mp4",
+      "arm": "right",
+      "title": "Tiro con buena mecánica",
+      "description": "El codo queda alineado bajo el balón. Así se ve un resultado verde.",
+      "trim_start_s": null,
+      "trim_end_s": null
+    },
+    {
+      "slug": "tiro-2",
+      "source": "demo_sources/Maso.mp4",
+      "arm": "right",
+      "title": "Tiro cerca del límite",
+      "description": "El codo está algo abierto. Mira qué detecta BallIt y cómo lo explica.",
+      "trim_start_s": null,
+      "trim_end_s": null
+    },
+    {
+      "slug": "tiro-3",
+      "source": "demo_sources/Horrible.mp4",
+      "arm": "right",
+      "title": "Tiro con el codo abierto",
+      "description": "El codo se separa del cuerpo. Mira cómo lo marca BallIt y qué te sugiere.",
+      "trim_start_s": null,
+      "trim_end_s": null
+    }
+  ]
+}

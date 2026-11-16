@@ -12,3 +12,6 @@ cache/
 app_cache/
 output/
 sample_data/
+experimento/
+demo_sources/
+.DS_Store
