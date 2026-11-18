@@ -53,7 +53,7 @@ CORS_ORIGIN_REGEX = os.getenv('BALLIT_CORS_ORIGIN_REGEX', r'https://ballit-[a-z0
 app = FastAPI(title='BallIt API', version='0.1.0')
 app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_origin_regex=CORS_ORIGIN_REGEX,
                    allow_credentials=False, allow_methods=['GET', 'POST', 'DELETE'],
-                   allow_headers=['X-User-Id', 'Content-Type'])
+                   allow_headers=['X-User-Id', 'Content-Type', 'Range'])
 app.add_middleware(GZipMiddleware, minimum_size=1024)
 app.include_router(demos.router, prefix='/demos')
 

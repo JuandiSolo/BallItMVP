@@ -100,6 +100,9 @@ def get_demo(slug: str):
 # Lista blanca de archivos permitidos
 FILE_PATTERN = re.compile(r'^(?:(?:video|annotated)\.mp4|thumb\.jpg|shot[1-9][0-9]*\.(?:jpg|mp4))$')
 
+# Content-Type explícito por extensión (el whitelist solo permite .mp4 y .jpg)
+CONTENT_TYPES = {'.mp4': 'video/mp4', '.jpg': 'image/jpeg'}
+
 
 @router.get('/{slug}/files/{filename}')
 def get_demo_file(slug: str, filename: str):
@@ -115,6 +118,8 @@ def get_demo_file(slug: str, filename: str):
     if not path.is_file():
         _error(404, 'NOT_FOUND', 'Archivo no encontrado')
 
-    # Headers de cache para archivos estáticos
+    # Content-Type explícito: no dependemos del registro de mimetypes del contenedor (Render),
+    # donde .mp4 podría degradarse a octet-stream y el navegador lo bloquearía por CORB.
+    media_type = CONTENT_TYPES.get(path.suffix.lower(), 'application/octet-stream')
     headers = {'Cache-Control': 'public, max-age=86400'}
-    return FileResponse(path, headers=headers)
+    return FileResponse(path, media_type=media_type, headers=headers)
