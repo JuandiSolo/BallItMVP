@@ -47,7 +47,8 @@ Configuración opcional del servidor:
 | Variable | Uso |
 |---|---|
 | `BALLIT_DATA_DIR` | Carpeta raíz de videos, resultados y caché; por defecto, este proyecto |
-| `BALLIT_CORS_ORIGINS` | Orígenes permitidos separados por coma; por defecto `http://localhost:3000,http://localhost:5173`. En producción (Render) incluir el front de Vercel **sin barra final**: `https://ball-it-fd.vercel.app,http://localhost:3000,http://localhost:5173` |
+| `BALLIT_CORS_ORIGINS` | Orígenes exactos permitidos, separados por coma; por defecto `http://localhost:3000,http://localhost:5173`. En producción (Render) incluir la landing y el front de Vercel **sin barra final**, p. ej. `https://ballit.vercel.app,http://localhost:8080,http://localhost:5500` |
+| `BALLIT_CORS_ORIGIN_REGEX` | Patrón (regex) para orígenes variables, como los previews de Vercel; por defecto `https://ballit-[a-z0-9-]+\.vercel\.app` |
 | `BALLIT_MAX_BYTES` | Tamaño máximo; por defecto 200 MiB |
 | `BALLIT_MAX_SECONDS` | Duración máxima opcional del segmento analizado; por defecto `0` (sin límite) |
 | `GROQ_API_KEY` | Habilita el coach de IA; si falta o falla, se dan consejos locales |

@@ -49,9 +49,11 @@ if not math.isfinite(MAX_SECONDS) or MAX_SECONDS < 0:
     raise ValueError('BALLIT_MAX_SECONDS debe ser 0 (sin límite) o un número positivo')
 SUFFIXES = {'.mp4', '.mov', '.m4v', '.avi', '.mkv'}
 CORS_ORIGINS = [x.strip() for x in os.getenv('BALLIT_CORS_ORIGINS', 'http://localhost:3000,http://localhost:5173').split(',') if x.strip()]
+CORS_ORIGIN_REGEX = os.getenv('BALLIT_CORS_ORIGIN_REGEX', r'https://ballit-[a-z0-9-]+\.vercel\.app')
 app = FastAPI(title='BallIt API', version='0.1.0')
-app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_credentials=False,
-                   allow_methods=['GET', 'POST', 'DELETE'], allow_headers=['X-User-Id', 'Content-Type'])
+app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_origin_regex=CORS_ORIGIN_REGEX,
+                   allow_credentials=False, allow_methods=['GET', 'POST', 'DELETE'],
+                   allow_headers=['X-User-Id', 'Content-Type'])
 app.add_middleware(GZipMiddleware, minimum_size=1024)
 app.include_router(demos.router, prefix='/demos')
 
