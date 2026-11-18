@@ -98,7 +98,7 @@ def get_demo(slug: str):
 
 
 # Lista blanca de archivos permitidos
-FILE_PATTERN = re.compile(r'^(video|annotated)\.mp4|thumb\.jpg|shot[1-9][0-9]*\.(jpg|mp4)$')
+FILE_PATTERN = re.compile(r'^(?:(?:video|annotated)\.mp4|thumb\.jpg|shot[1-9][0-9]*\.(?:jpg|mp4))$')
 
 
 @router.get('/{slug}/files/{filename}')
